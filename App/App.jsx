@@ -1,15 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>This App works!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -19,3 +9,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <Text>This App works!</Text>
+
+    </View>
+  );
+}
