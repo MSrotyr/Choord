@@ -1,10 +1,10 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-export default function Library() {
+export default function AddChords() {
   return (
     <View>
-      <Text>Library working</Text>
+      <Text>Add chords working</Text>
     </View>
   );
 }
