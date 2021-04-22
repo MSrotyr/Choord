@@ -8,6 +8,8 @@ module.exports = {
   rules: {
     'react/no-unescaped-entities': 0,
     'no-multiple-empty-lines': ['error', { max: 2, maxEOF: 0 }],
+    'react/prop-types': 'off',
+    'no-unused-vars': ['error', { args: 'none' }],
   },
 
 };

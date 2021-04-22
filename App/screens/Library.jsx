@@ -1,20 +1,41 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { charleston, ruby, magnolia } from '../colours';
-import { MaterialIcons } from '@expo/vector-icons';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { tuscany } from '../colours';
+import Chord from '../components/Chord';
+
+const styles = StyleSheet.create({
+  screen: {
+    backgroundColor: tuscany,
+    flex: 1,
+  },
+});
 
 export default function Library() {
   return (
     <View style={styles.screen}>
-      <Text>Library working</Text>
-      <MaterialIcons name="library-music" size={24} color="black" />
+      <ScrollView>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+          <Chord />
+          <Chord />
+          <Chord />
+          <Chord />
+          <Chord />
+          <Chord />
+          <Chord />
+          <Chord />
+          <Chord />
+          <Chord />
+          <Chord />
+          <Chord />
+          <Chord />
+          <Chord />
+          <Chord />
+          <Chord />
+          <Chord />
+          <Chord />
+          <Chord />
+        </View>
+      </ScrollView>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    backgroundColor: magnolia,
-    flex: 1,
-  }
-})
