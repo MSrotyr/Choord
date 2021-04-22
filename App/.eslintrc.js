@@ -10,6 +10,7 @@ module.exports = {
     'no-multiple-empty-lines': ['error', { max: 2, maxEOF: 0 }],
     'react/prop-types': 'off',
     'no-unused-vars': ['error', { args: 'none' }],
+    'no-plusplus': 'off',
   },
 
 };

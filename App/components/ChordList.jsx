@@ -1,10 +1,16 @@
 import React from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import Chord from './Chord';
+
+const styles = StyleSheet.create({
+  list: {
+    marginVertical: 10,
+  },
+});
 
 export default function ChordList({ data }) {
   return (
-    <View>
+    <View style={styles.list}>
       <FlatList
         numColumns={3}
         data={data}
