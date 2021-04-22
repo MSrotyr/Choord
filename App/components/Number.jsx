@@ -4,11 +4,11 @@ import {
   celadon, honey, prussian, ruby,
 } from '../colours';
 
-const startX = 2;
-const startY = 48;
+const startX = 14;
+const startY = 47;
 
-const xSep = 19.2;
-const ySep = 29.5;
+const xSep = 16.8;
+const ySep = 25;
 
 const styles = StyleSheet.create({
   background: {
@@ -34,12 +34,12 @@ export default function Number({ fingerNum, fretNum, stringNum }) {
   if (fingerNum === 4) color = honey;
   return (
     <View style={[styles.background,
-      {
-        backgroundColor: color,
-        position: 'absolute',
-        top: startY + (ySep * fretNum),
-        left: startX + (xSep * stringNum),
-      }]}
+    {
+      backgroundColor: color,
+      position: 'absolute',
+      top: startY + (ySep * fretNum),
+      left: startX + (xSep * stringNum),
+    }]}
     >
       <Text style={styles.text}>{fingerNum}</Text>
     </View>
