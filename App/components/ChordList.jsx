@@ -4,7 +4,7 @@ import Chord from './Chord';
 
 const styles = StyleSheet.create({
   list: {
-    marginVertical: 10,
+    marginTop: 10,
   },
 });
 

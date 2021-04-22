@@ -4,7 +4,8 @@ import {
 } from 'react-native';
 import chordImg from '../assets/chord.png';
 import Number from './Number';
-import StringHeader from './StringHeader';
+import X from './X';
+import O from './O';
 
 const imageScale = 0.965;
 const padding = 8;
@@ -33,8 +34,8 @@ const styles = StyleSheet.create({
 function fretNumberComponents(data) {
   const components = [];
   for (let i = 0; i < data.frets.length; i++) {
-    if (data.frets[i] === -1) components.push(<StringHeader key={i} XorO="X" stringNum={i} />);
-    else if (data.frets[i] === 0) components.push(<StringHeader key={i} XorO="O" stringNum={i} />);
+    if (data.frets[i] === -1) components.push(<X key={i} stringNum={i} />);
+    else if (data.frets[i] === 0) components.push(<O key={i} stringNum={i} />);
     else {
       components.push(
         <Number key={i} stringNum={i} fretNum={data.frets[i] - 1} fingerNum={data.fingers[i]} />,
