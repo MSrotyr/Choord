@@ -7,6 +7,7 @@ import Number from './Number';
 import X from './X';
 import O from './O';
 import FretNumber from './FretNumber';
+import Barre from './Barre';
 
 const imageScale = 0.83;
 const padding = 8;
@@ -18,8 +19,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding,
     paddingLeft,
-    marginHorizontal: 5,
-    marginVertical: 5,
+    margin: 5,
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
@@ -50,10 +50,29 @@ function extraIconFunc(data) {
   if (maxFret > 4) {
     fretStart = minFret;
   }
+  let finished = []
   const components = [];
-  for (let i = 0; i < data.frets.length; i++) {
+  for (let i = 0; i < 6; i++) {
+
+    if (finished.includes(data.fingers[i])) continue;
+
+    let restRev = data.fingers.slice(i + 1).reverse();
+    let lastIndex = 6 - 1 - restRev.indexOf(data.fingers[i]);
+
     if (data.frets[i] === -1) components.push(<X key={i} stringNum={i} />);
     else if (data.frets[i] === 0) components.push(<O key={i} stringNum={i} />);
+
+    else if (lastIndex !== 6) {
+      //barre chord
+      components.push(<Barre
+        startStringNum={i}
+        endStringNum={lastIndex}
+        fretNum={data.frets[i] - fretStart}
+        fingerNum={data.fingers[i]}
+        key={i} />);
+      finished.push(data.fingers[i])
+    }
+
     else {
       components.push(
         <Number key={i} stringNum={i} fretNum={data.frets[i] - fretStart} fingerNum={data.fingers[i]} />,
