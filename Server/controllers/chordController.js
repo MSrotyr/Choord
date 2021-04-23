@@ -5,6 +5,13 @@ async function getLibrary(req, res) {
 }
 
 async function addToLibrary(req, res) {
+  // console.log(req.body);
+
+  const chord = { ...chord, position: chord.position }
+  try {
+    const chord Chords.create()
+  }
+
   res.send('hello post');
 }
 
