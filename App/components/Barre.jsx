@@ -4,34 +4,31 @@ import {
   celadon, honey, prussian, ruby,
 } from '../colours';
 
-const startX = 18.5;
-const startY = 47;
+const startX = -2.5;
+const startY = 12;
 
-const xSep = 16.9;
-const ySep = 25;
+const xSep = 20;
+const ySep = 30;
 
-const initWidth = 23;
+const initWidth = 27;
 
 const styles = StyleSheet.create({
   background: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: 15,
     borderRadius: 20,
     color: 'white',
     zIndex: 1,
   },
   text: {
     color: 'white',
-    fontSize: 12,
   },
 });
 
 export default function Barre({
-  fingerNum, fretNum, startStringNum, endStringNum,
+  fingerNum, fretNum, startStringNum, endStringNum, scale,
 }) {
   const width = endStringNum - startStringNum;
-  // console.log(startStringNum, endStringNum)
   let color;
   if (fingerNum === 1) color = ruby;
   if (fingerNum === 2) color = prussian;
@@ -40,14 +37,15 @@ export default function Barre({
   return (
     <View style={[styles.background,
       {
-        width: initWidth + xSep * (width - 1),
+        height: scale * 17,
+        width: scale * (initWidth + xSep * (width - 1)),
         backgroundColor: color,
         position: 'absolute',
-        top: startY + (ySep * fretNum),
-        left: startX + (xSep * startStringNum),
+        top: scale * (startY + (ySep * fretNum)),
+        left: scale * (startX + (xSep * startStringNum)),
       }]}
     >
-      <Text style={styles.text}>{fingerNum}</Text>
+      <Text style={[styles.text, { fontSize: 14 * scale }]}>{fingerNum}</Text>
     </View>
   );
 }

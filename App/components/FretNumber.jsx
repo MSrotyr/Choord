@@ -1,28 +1,21 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 
-const startX = 0;
-const startY = 60;
+const startX = -21;
+const startY = 1;
 
-const styles = StyleSheet.create({
-  container: {
-    zIndex: 1,
-  },
-  text: {
-    fontSize: 12,
-  },
-});
-
-export default function FretNumber({ fretNum }) {
+export default function FretNumber({ fretNum, scale }) {
   return (
-    <View style={[styles.container,
+    <View style={
       {
+        zIndex: 1,
         position: 'absolute',
-        top: startY,
-        left: startX,
-      }]}
+        top: scale * startY,
+        left: scale * startX,
+      }
+    }
     >
-      <Text style={styles.text}>{`${fretNum} fr`}</Text>
+      <Text style={{ fontSize: 13 * scale }}>{`${fretNum} fr`}</Text>
     </View>
   );
 }

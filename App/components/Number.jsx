@@ -4,29 +4,28 @@ import {
   celadon, honey, prussian, ruby,
 } from '../colours';
 
-const startX = 15;
-const startY = 47;
+const startX = -7;
+const startY = 12;
 
-const xSep = 16.6;
-const ySep = 25;
+const xSep = 19.8;
+const ySep = 30;
 
 const styles = StyleSheet.create({
   background: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 15,
-    height: 15,
-    borderRadius: 20,
+    borderRadius: 30,
     color: 'white',
     zIndex: 1,
   },
   text: {
     color: 'white',
-    fontSize: 12,
   },
 });
 
-export default function Number({ fingerNum, fretNum, stringNum }) {
+export default function Number({
+  fingerNum, fretNum, stringNum, scale,
+}) {
   let color;
   if (fingerNum === 1) color = ruby;
   if (fingerNum === 2) color = prussian;
@@ -35,13 +34,15 @@ export default function Number({ fingerNum, fretNum, stringNum }) {
   return (
     <View style={[styles.background,
       {
+        width: 17 * scale,
+        height: 17 * scale,
         backgroundColor: color,
         position: 'absolute',
-        top: startY + (ySep * fretNum),
-        left: startX + (xSep * stringNum),
+        top: scale * (startY + (ySep * fretNum)),
+        left: scale * (startX + (xSep * stringNum)),
       }]}
     >
-      <Text style={styles.text}>{fingerNum}</Text>
+      <Text style={[styles.text, { fontSize: 14 * scale }]}>{fingerNum}</Text>
     </View>
   );
 }

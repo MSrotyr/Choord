@@ -1,28 +1,24 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
-const startX = 17;
-const startY = 23;
+const startX = -5;
+const startY = -13.6;
 
-const xSep = 16.4;
+const xSep = 19.8;
 
-const styles = StyleSheet.create({
-  container: {
-    zIndex: 1,
-  },
-});
-
-export default function StringHeader({ XorO, stringNum }) {
+export default function StringHeader({ stringNum, scale }) {
   return (
-    <View style={[styles.container,
+    <View style={
       {
+        zIndex: 1,
         position: 'absolute',
-        top: startY,
-        left: startX + xSep * stringNum,
-      }]}
+        top: scale * (startY),
+        left: scale * (startX + xSep * stringNum),
+      }
+    }
     >
-      <Feather name="circle" size={13} color="black" />
+      <Feather name="circle" size={13 * scale} color="black" />
     </View>
   );
 }

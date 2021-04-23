@@ -9,28 +9,16 @@ import O from './O';
 import FretNumber from './FretNumber';
 import Barre from './Barre';
 
-const imageScale = 0.83;
 const padding = 8;
 const paddingLeft = 22;
 
 const styles = StyleSheet.create({
   container: {
-    maxWidth: 102 * imageScale + 2 * padding + paddingLeft,
     backgroundColor: 'white',
-    padding,
-    paddingLeft,
     margin: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    position: 'relative',
     borderRadius: 5,
-  },
-  chord: {
-    width: 102 * imageScale,
-    height: 127 * imageScale,
-  },
-  chordName: {
-    marginBottom: 12,
   },
 });
 
@@ -44,7 +32,7 @@ function minMaxFretFunc(data) {
   return [minFret, maxFret];
 }
 
-function extraIconFunc(data) {
+function extraIconFunc(data, scale) {
   let fretStart = 1;
   const [minFret, maxFret] = minMaxFretFunc(data);
   if (maxFret > 4) {
@@ -58,12 +46,13 @@ function extraIconFunc(data) {
     const restRev = data.fingers.slice(i + 1).reverse();
     const lastIndex = 6 - 1 - restRev.indexOf(data.fingers[i]);
 
-    if (data.frets[i] === -1) components.push(<X key={i} stringNum={i} />);
-    else if (data.frets[i] === 0) components.push(<O key={i} stringNum={i} />);
+    if (data.frets[i] === -1) components.push(<X scale={scale} key={i} stringNum={i} />);
+    else if (data.frets[i] === 0) components.push(<O scale={scale} key={i} stringNum={i} />);
 
     else if (lastIndex !== 6) {
       // barre chord
       components.push(<Barre
+        scale={scale}
         startStringNum={i}
         endStringNum={lastIndex}
         fretNum={data.frets[i] - fretStart}
@@ -74,6 +63,7 @@ function extraIconFunc(data) {
     } else {
       components.push(
         <Number
+          scale={scale}
           key={i}
           stringNum={i}
           fretNum={data.frets[i] - fretStart}
@@ -82,21 +72,29 @@ function extraIconFunc(data) {
       );
     }
   }
-  components.push(<FretNumber key="key" fretNum={fretStart} />);
+  components.push(<FretNumber scale={scale} key="key" fretNum={fretStart} />);
   return components;
 }
 
 
-export default function Chord({ chordData }) {
+export default function Chord({ chordData, scale }) {
   return (
-    <View style={styles.container}>
-      <Text style={styles.chordName}>{chordData.key + chordData.suffix}</Text>
-      {extraIconFunc(chordData.positions)}
-      <Image
-        style={styles.chord}
-        source={chordImg}
-        resizeMode="contain"
-      />
+    <View style={[styles.container, {
+      padding: padding * scale,
+      paddingLeft: paddingLeft * scale,
+    }]}
+    >
+      <Text style={{ fontSize: 16 * scale, marginBottom: 14 * scale }}>
+        {`${chordData.key} ${chordData.suffix}`}
+      </Text>
+      <View>
+        {extraIconFunc(chordData, scale)}
+        <Image
+          style={{ width: 102 * scale, height: 127 * scale }}
+          source={chordImg}
+          resizeMode="contain"
+        />
+      </View>
     </View>
   );
 }
