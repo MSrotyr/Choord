@@ -26,6 +26,10 @@ const chordSchema = new mongoose.Schema({
     required: true
   },
   capo: Boolean,
+  baseFret: {
+    type: Number,
+    required: true
+  }
 });
 
 const Chords = mongoose.model('Chord', chordSchema);
