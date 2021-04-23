@@ -29,7 +29,8 @@ const chordSchema = new mongoose.Schema({
   baseFret: {
     type: Number,
     required: true
-  }
+  },
+  comment: String,
 });
 
 const Chords = mongoose.model('Chord', chordSchema);

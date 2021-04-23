@@ -20,4 +20,14 @@ async function addToLibrary(req, res) {
   }
 }
 
-module.exports = { getLibrary, addToLibrary };
+async function removeFromLibrary(req, res) {
+  try {
+    const chord = await Chords.findOneAndDelete({ _id: req.params.id });
+    res.status(200).send(chord);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err)
+  }
+}
+
+module.exports = { getLibrary, addToLibrary, removeFromLibrary };
