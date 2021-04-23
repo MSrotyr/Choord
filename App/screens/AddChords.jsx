@@ -2,14 +2,13 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import chordData from '../assets/beginnerChords.json';
 import ChordList from '../components/ChordList';
-import { tuscany } from '../colours';
+import { manatee } from '../colours';
 
-// Test data
 const data = chordData.chords;
 
 const styles = StyleSheet.create({
   screen: {
-    backgroundColor: tuscany,
+    backgroundColor: manatee,
     flex: 1,
   },
 });

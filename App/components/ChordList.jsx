@@ -10,17 +10,17 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function ChordList({ data }) {
+export default function ChordList({ data, goToChord }) {
   return (
     <FlatList
       style={styles.list}
-      contentContainerStyle={{ flexGrow: 1, alignItems: 'center' }}
       numColumns={3}
       data={data}
       keyExtractor={(item) => (item.key + item.suffix)}
       renderItem={({ item }) => (
-        <Chord chordData={item} scale={scale} />
+        <Chord goToChord={goToChord} chordData={item} scale={scale} isButton />
       )}
     />
+
   );
 }

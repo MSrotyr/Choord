@@ -7,18 +7,28 @@ import { ThemeProvider } from 'nachos-ui';
 import Library from './screens/Library';
 import AddChords from './screens/AddChords';
 import { ruby } from './colours';
+import LibraryChordZoomed from './screens/LibraryChordZoomed';
+
+const screenOptions = {
+  headerStyle: {
+    backgroundColor: ruby,
+    elevation: 0,
+    shadowOpacity: 0,
+    borderBottomWidth: 0,
+    height: 60,
+  },
+  headerTintColor: 'white',
+};
 
 
 const LibraryStack = createStackNavigator();
 function LibraryStackScreen() {
   return (
     <LibraryStack.Navigator
-      screenOptions={{
-        headerStyle: { backgroundColor: ruby },
-        headerTintColor: 'white',
-      }}
+      screenOptions={screenOptions}
     >
       <LibraryStack.Screen name="Library" component={Library} />
+      <LibraryStack.Screen name="LibraryChordZoomed" component={LibraryChordZoomed} />
     </LibraryStack.Navigator>
   );
 }
@@ -27,16 +37,7 @@ const AddChordsStack = createStackNavigator();
 function AddChordsStackScreen() {
   return (
     <AddChordsStack.Navigator
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: ruby,
-          elevation: 0,
-          shadowOpacity: 0,
-          borderBottomWidth: 0,
-          height: 50,
-        },
-        headerTintColor: 'white',
-      }}
+      screenOptions={screenOptions}
     >
       <AddChordsStack.Screen name="Add Chords" component={AddChords} />
     </AddChordsStack.Navigator>
@@ -50,7 +51,7 @@ export default function App() {
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => (route.name === 'Library'
+            tabBarIcon: ({ focused, color }) => (route.name === 'Library'
               ? <MaterialIcons name="library-music" size={30} color={color} />
               : <Ionicons name="ios-add-circle-outline" size={30} color={color} />),
           })}

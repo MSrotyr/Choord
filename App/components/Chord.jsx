@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, StyleSheet, Image, Text,
+  View, StyleSheet, Image, Text, TouchableOpacity,
 } from 'react-native';
 import chordImg from '../assets/chord.png';
 import Number from './Number';
@@ -15,14 +15,13 @@ const paddingLeft = 22;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    margin: 5,
+    margin: 6.5,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,
   },
 });
 
-// find minimum fret
 function minMaxFretFunc(data) {
   let minFret = 40; // Needs to be any number above 30
   for (let i = 0; i < data.frets.length; i++) {
@@ -76,20 +75,19 @@ function extraIconFunc(data, scale) {
   return components;
 }
 
-
-export default function Chord({ chordData, scale }) {
+function genChord(chordData, scale, goToChord) {
   return (
-    <View style={[styles.container, {
-      padding: padding * scale,
-      paddingLeft: paddingLeft * scale,
-    }]}
-    >
+    <View>
       <Text style={{ fontSize: 16 * scale, marginBottom: 14 * scale }}>
         {`${chordData.key} ${chordData.suffix}`}
       </Text>
       <View>
         {extraIconFunc(chordData, scale)}
         <Image
+          onPress={() => {
+            console.log('hey');
+            goToChord(chordData);
+          }}
           style={{ width: 102 * scale, height: 127 * scale }}
           source={chordImg}
           resizeMode="contain"
@@ -97,4 +95,25 @@ export default function Chord({ chordData, scale }) {
       </View>
     </View>
   );
+}
+
+
+export default function Chord({
+  chordData, scale, goToChord, isButton,
+}) {
+  if (isButton) {
+    return (
+      <TouchableOpacity
+        onPress={() => { if (goToChord) goToChord(chordData); }}
+        style={[styles.container, {
+          padding: padding * scale,
+          paddingLeft: paddingLeft * scale,
+        }]}
+      >
+        {genChord(chordData, scale, goToChord)}
+      </TouchableOpacity>
+    );
+  }
+
+  return genChord(chordData, scale, goToChord);
 }
