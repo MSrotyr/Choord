@@ -10,7 +10,7 @@ const startY = 47;
 const xSep = 16.9;
 const ySep = 25;
 
-const initWidth = 23
+const initWidth = 23;
 
 const styles = StyleSheet.create({
   background: {
@@ -27,8 +27,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Barre({ fingerNum, fretNum, startStringNum, endStringNum }) {
-  const width = endStringNum - startStringNum
+export default function Barre({
+  fingerNum, fretNum, startStringNum, endStringNum,
+}) {
+  const width = endStringNum - startStringNum;
   // console.log(startStringNum, endStringNum)
   let color;
   if (fingerNum === 1) color = ruby;
@@ -37,13 +39,13 @@ export default function Barre({ fingerNum, fretNum, startStringNum, endStringNum
   if (fingerNum === 4) color = honey;
   return (
     <View style={[styles.background,
-    {
-      width: initWidth + xSep * (width - 1),
-      backgroundColor: color,
-      position: 'absolute',
-      top: startY + (ySep * fretNum),
-      left: startX + (xSep * startStringNum),
-    }]}
+      {
+        width: initWidth + xSep * (width - 1),
+        backgroundColor: color,
+        position: 'absolute',
+        top: startY + (ySep * fretNum),
+        left: startX + (xSep * startStringNum),
+      }]}
     >
       <Text style={styles.text}>{fingerNum}</Text>
     </View>

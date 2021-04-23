@@ -10,17 +10,17 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 12,
-  }
+  },
 });
 
 export default function FretNumber({ fretNum }) {
   return (
     <View style={[styles.container,
-    {
-      position: 'absolute',
-      top: startY,
-      left: startX
-    }]}
+      {
+        position: 'absolute',
+        top: startY,
+        left: startX,
+      }]}
     >
       <Text style={styles.text}>{`${fretNum} fr`}</Text>
     </View>

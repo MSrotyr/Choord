@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import chordData from '../assets/tempChords.json';
+import chordData from '../assets/beginnerChords.json';
 import ChordList from '../components/ChordList';
 import { tuscany } from '../colours';
 
 // Test data
-const data = chordData.chords.C;
+const data = chordData.chords;
 
 const styles = StyleSheet.create({
   screen: {

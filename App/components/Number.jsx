@@ -34,12 +34,12 @@ export default function Number({ fingerNum, fretNum, stringNum }) {
   if (fingerNum === 4) color = honey;
   return (
     <View style={[styles.background,
-    {
-      backgroundColor: color,
-      position: 'absolute',
-      top: startY + (ySep * fretNum),
-      left: startX + (xSep * stringNum),
-    }]}
+      {
+        backgroundColor: color,
+        position: 'absolute',
+        top: startY + (ySep * fretNum),
+        left: startX + (xSep * stringNum),
+      }]}
     >
       <Text style={styles.text}>{fingerNum}</Text>
     </View>

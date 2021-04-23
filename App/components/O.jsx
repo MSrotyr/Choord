@@ -16,11 +16,11 @@ const styles = StyleSheet.create({
 export default function StringHeader({ XorO, stringNum }) {
   return (
     <View style={[styles.container,
-    {
-      position: 'absolute',
-      top: startY,
-      left: startX + xSep * stringNum,
-    }]}
+      {
+        position: 'absolute',
+        top: startY,
+        left: startX + xSep * stringNum,
+      }]}
     >
       <Feather name="circle" size={13} color="black" />
     </View>

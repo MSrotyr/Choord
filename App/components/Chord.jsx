@@ -34,52 +34,55 @@ const styles = StyleSheet.create({
   },
 });
 
-//find minimum fret
+// find minimum fret
 function minMaxFretFunc(data) {
-  let minFret = 40; //Needs to be any number above 30
+  let minFret = 40; // Needs to be any number above 30
   for (let i = 0; i < data.frets.length; i++) {
-    if (data.frets[i] < minFret && data.frets[i] > 0) minFret = data.frets[i]
+    if (data.frets[i] < minFret && data.frets[i] > 0) minFret = data.frets[i];
   }
   const maxFret = Math.max(...data.frets);
   return [minFret, maxFret];
 }
 
 function extraIconFunc(data) {
-  let fretStart = 1
+  let fretStart = 1;
   const [minFret, maxFret] = minMaxFretFunc(data);
   if (maxFret > 4) {
     fretStart = minFret;
   }
-  let finished = []
+  const finished = [];
   const components = [];
   for (let i = 0; i < 6; i++) {
-
     if (finished.includes(data.fingers[i])) continue;
 
-    let restRev = data.fingers.slice(i + 1).reverse();
-    let lastIndex = 6 - 1 - restRev.indexOf(data.fingers[i]);
+    const restRev = data.fingers.slice(i + 1).reverse();
+    const lastIndex = 6 - 1 - restRev.indexOf(data.fingers[i]);
 
     if (data.frets[i] === -1) components.push(<X key={i} stringNum={i} />);
     else if (data.frets[i] === 0) components.push(<O key={i} stringNum={i} />);
 
     else if (lastIndex !== 6) {
-      //barre chord
+      // barre chord
       components.push(<Barre
         startStringNum={i}
         endStringNum={lastIndex}
         fretNum={data.frets[i] - fretStart}
         fingerNum={data.fingers[i]}
-        key={i} />);
-      finished.push(data.fingers[i])
-    }
-
-    else {
+        key={i}
+      />);
+      finished.push(data.fingers[i]);
+    } else {
       components.push(
-        <Number key={i} stringNum={i} fretNum={data.frets[i] - fretStart} fingerNum={data.fingers[i]} />,
+        <Number
+          key={i}
+          stringNum={i}
+          fretNum={data.frets[i] - fretStart}
+          fingerNum={data.fingers[i]}
+        />,
       );
     }
   }
-  components.push(<FretNumber key={'key'} fretNum={fretStart} />);
+  components.push(<FretNumber key="key" fretNum={fretStart} />);
   return components;
 }
 
@@ -88,7 +91,7 @@ export default function Chord({ chordData }) {
   return (
     <View style={styles.container}>
       <Text style={styles.chordName}>{chordData.key + chordData.suffix}</Text>
-      {extraIconFunc(chordData.positions[0])}
+      {extraIconFunc(chordData.positions)}
       <Image
         style={styles.chord}
         source={chordImg}

@@ -11,6 +11,7 @@ module.exports = {
     'react/prop-types': 'off',
     'no-unused-vars': ['error', { args: 'none' }],
     'no-plusplus': 'off',
+    'no-continue': 'off',
   },
 
 };
