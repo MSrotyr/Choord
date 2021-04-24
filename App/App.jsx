@@ -33,7 +33,11 @@ function LibraryStackScreen() {
       screenOptions={screenOptions}
     >
       <LibraryStack.Screen name="Library" component={Library} />
-      <LibraryStack.Screen name="LibraryChordZoomed" component={LibraryChordZoomed} />
+      <LibraryStack.Screen
+        name="LibraryChordZoomed"
+        component={LibraryChordZoomed}
+        options={({ route }) => ({ title: `${route.params.chordData.key} ${route.params.chordData.suffix}` })}
+      />
     </LibraryStack.Navigator>
   );
 }
@@ -44,8 +48,14 @@ function AddChordsStackScreen() {
     <AddChordsStack.Navigator
       screenOptions={screenOptions}
     >
-      <AddChordsStack.Screen name="ChordStore" component={ChordStore} />
-      <AddChordsStack.Screen name="StoreChordZoomed" component={StoreChordZoomed} />
+      <AddChordsStack.Screen name="Store" component={ChordStore} />
+      <AddChordsStack.Screen
+        name="StoreChordZoomed"
+        component={StoreChordZoomed}
+        options={({ route }) => (
+          { title: `${route.params.chordData.key} ${route.params.chordData.suffix}` }
+        )}
+      />
     </AddChordsStack.Navigator>
   );
 }
@@ -73,7 +83,7 @@ export default function App() {
             }}
           >
             <Tab.Screen name="Library" component={LibraryStackScreen} />
-            <Tab.Screen name="ChordStore" component={AddChordsStackScreen} />
+            <Tab.Screen name="Store" component={AddChordsStackScreen} />
           </Tab.Navigator>
         </NavigationContainer>
       </ThemeProvider>
