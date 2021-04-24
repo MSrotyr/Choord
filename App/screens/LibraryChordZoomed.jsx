@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   View, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Keyboard,
 } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'nachos-ui';
 import { manatee } from '../colours';
 import Chord from '../components/Chord';
@@ -43,10 +43,7 @@ const styles = StyleSheet.create({
 const scale = 2;
 
 export default function LibraryChordZoomed({ route, navigation }) {
-  const test = useSelector(state => state.library);
-
-  console.log(test);
-
+  const dispatch = useDispatch();
   const { chordData } = route.params;
   const [comment, setComment] = useState(chordData.comment
     ? chordData.comment
@@ -54,9 +51,7 @@ export default function LibraryChordZoomed({ route, navigation }) {
 
   function updateComment() {
     if (comment && comment !== chordData.comment) {
-      apiService.updateComment(chordData._id, comment);
-      navigation.navigate('Library',
-        { _id: chordData._id, comment, action: 'UPDATE' });
+      dispatch(actions.updateComment(chordData._id, comment));
     }
   }
 

@@ -1,10 +1,8 @@
-const uploadLibrary = library => {
-  console.log(library);
-  return ({
-    type: 'UPLOAD_LIBRARY',
-    payload: library,
-  });
-};
+const uploadLibrary = library => ({
+  type: 'UPLOAD_LIBRARY',
+  payload: library,
+});
+
 
 const updateComment = (_id, comment) => (
   {
