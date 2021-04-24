@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  View, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Keyboard, BackHandler,
+  View, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Keyboard, BackHandler, Text,
 } from 'react-native';
 import { manatee } from '../colours';
 import Chord from '../components/Chord';
@@ -36,21 +36,32 @@ const styles = StyleSheet.create({
 
 const scale = 2;
 
-export default function LibraryChordZoomed({ route }) {
-  const [comment, setComment] = useState('');
+export default function LibraryChordZoomed({ route, navigation }) {
   const chordData = route.params.chordData;
+  const [comment, setComment] = useState(chordData.comment
+    ? chordData.comment
+    : ''
+  );
 
-  useEffect(() => {
-    return async () => {
+  function updateComment() {
+    if (comment && comment !== chordData.comment) {
+      apiService.updateComment(chordData._id, comment);
+      navigation.navigate('Library',
+        { _id: chordData._id, comment: comment, action: 'UPDATE' });
     }
-  }, [])
+  }
+
+  function removeFromLibrary(_id) {
+    apiService.removeFromLibrary(chordData._id, comment);
+    navigation.navigate('Library', { _id: chordData._id, action: 'DELETE' });
+  }
 
   return (
     <TouchableOpacity style={styles.screen} activeOpacity={1} onPress={() => Keyboard.dismiss()}>
       <KeyboardAvoidingView behavior="position">
-        <View>
-          <View style={styles.container}>
-            <Chord chordData={chordData} scale={scale} />
+        <View style={styles.container}>
+          <Chord chordData={chordData} scale={scale} />
+          <View>
             <TextInput
               style={styles.input}
               value={comment}
@@ -58,6 +69,12 @@ export default function LibraryChordZoomed({ route }) {
               placeholder="Comments..."
               multiline
             />
+            <TouchableOpacity onPress={updateComment}>
+              <Text>Add Comment</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={removeFromLibrary}>
+              <Text>Delete Chord</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </KeyboardAvoidingView>
