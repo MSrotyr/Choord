@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
-  View, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Keyboard, BackHandler, Text,
+  View, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Keyboard,
 } from 'react-native';
+import { Button } from 'nachos-ui';
 import { manatee } from '../colours';
 import Chord from '../components/Chord';
 import apiService from '../apiService';
@@ -32,22 +33,24 @@ const styles = StyleSheet.create({
     height: 100,
     backgroundColor: 'white',
   },
+  btnStyle: {
+    marginTop: -10,
+  },
 });
 
 const scale = 2;
 
 export default function LibraryChordZoomed({ route, navigation }) {
-  const chordData = route.params.chordData;
+  const { chordData } = route.params;
   const [comment, setComment] = useState(chordData.comment
     ? chordData.comment
-    : ''
-  );
+    : '');
 
   function updateComment() {
     if (comment && comment !== chordData.comment) {
       apiService.updateComment(chordData._id, comment);
       navigation.navigate('Library',
-        { _id: chordData._id, comment: comment, action: 'UPDATE' });
+        { _id: chordData._id, comment, action: 'UPDATE' });
     }
   }
 
@@ -61,7 +64,7 @@ export default function LibraryChordZoomed({ route, navigation }) {
       <KeyboardAvoidingView behavior="position">
         <View style={styles.container}>
           <Chord chordData={chordData} scale={scale} />
-          <View>
+          <View style={{ maxHeight: 200 }}>
             <TextInput
               style={styles.input}
               value={comment}
@@ -69,12 +72,8 @@ export default function LibraryChordZoomed({ route, navigation }) {
               placeholder="Comments..."
               multiline
             />
-            <TouchableOpacity onPress={updateComment}>
-              <Text>Add Comment</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={removeFromLibrary}>
-              <Text>Delete Chord</Text>
-            </TouchableOpacity>
+            <Button onPress={updateComment} style={styles.btnStyle}>Add</Button>
+            <Button onPress={removeFromLibrary} style={styles.btnStyle}>Delete Chord</Button>
           </View>
         </View>
       </KeyboardAvoidingView>

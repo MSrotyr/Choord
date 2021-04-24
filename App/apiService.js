@@ -14,7 +14,7 @@ function addToLibrary(chordData) {
     return fetch(baseUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(chordData)
+      body: JSON.stringify(chordData),
     })
       .then((data) => data.json());
   } catch (err) {
@@ -38,7 +38,7 @@ function updateComment(_id, comment) {
     return fetch(`${baseUrl}/${_id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ comment })
+      body: JSON.stringify({ comment }),
     })
       .then((data) => data.json());
   } catch (err) {
@@ -46,4 +46,6 @@ function updateComment(_id, comment) {
   }
 }
 
-module.exports = { getLibrary, addToLibrary, removeFromLibrary, updateComment };
+module.exports = {
+  getLibrary, addToLibrary, removeFromLibrary, updateComment,
+};

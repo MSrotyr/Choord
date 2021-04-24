@@ -15,6 +15,8 @@ module.exports = {
     'no-unused-vars': ['error', { args: 'none' }],
     'no-plusplus': 'off',
     'no-continue': 'off',
+    'consistent-return': 'off',
+    'no-underscore-dangle': 'off',
   },
 
 };
