@@ -13,21 +13,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Library({ navigation, route }) {
+export default function Library({ navigation }) {
   const dispatch = useDispatch();
   const library = useSelector(state => state.library);
-
-  // useEffect(() => {
-  //   if (route.params) {
-  //     const targetChord = libChords.find((chord) => chord._id === route.params._id);
-  //     if (route.params.action === 'UPDATE') {
-  //       targetChord.comment = route.params.comment;
-  //     } else {
-  //       setLibChords((prevState) => prevState.filter((chord) => chord._id !== route.params._id));
-  //     }
-  //   }
-  // }, [route.params]);
-
 
   useEffect(() => {
     (async () => {

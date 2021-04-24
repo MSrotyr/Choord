@@ -18,6 +18,10 @@ const library = (state = INITIAL_STATE, action) => {
         return chord;
       }));
 
+    case 'REMOVE_FROM_LIBRARY':
+      apiService.removeFromLibrary(action.payload._id);
+      return (state.filter(chord => chord._id !== action.payload._id));
+
     default: return state;
   }
 };

@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import chordData from '../assets/beginnerChords.json';
+import beginnerChords from '../assets/beginnerChords.json';
 import ChordList from '../components/ChordList';
 import { manatee } from '../colours';
 
-const data = chordData.chords;
+const data = beginnerChords.chords;
 
 const styles = StyleSheet.create({
   screen: {

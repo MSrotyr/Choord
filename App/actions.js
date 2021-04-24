@@ -14,4 +14,12 @@ const updateComment = (_id, comment) => (
   }
 );
 
-module.exports = { updateComment, uploadLibrary };
+const removeFromLibrary = _id => (
+  {
+    type: 'REMOVE_FROM_LIBRARY',
+    payload: {
+      _id,
+    },
+  });
+
+module.exports = { updateComment, uploadLibrary, removeFromLibrary };

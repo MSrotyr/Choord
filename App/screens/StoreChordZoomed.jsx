@@ -4,7 +4,6 @@ import {
 } from 'react-native';
 import { manatee, ruby } from '../colours';
 import Chord from '../components/Chord';
-import apiService from '../apiService';
 
 const styles = StyleSheet.create({
   screen: {
@@ -42,12 +41,6 @@ const scale = 2;
 export default function LibraryChordZoomed({ route, navigation }) {
   const { chordData } = route.params;
 
-
-  function addToLibrary(_id) {
-    apiService.addToLibrary(chordData);
-    navigation.navigate('', { _id: chordData._id, action: 'DELETE' });
-  }
-
   return (
     <View style={styles.screen}>
       <View style={styles.container}>
@@ -55,7 +48,8 @@ export default function LibraryChordZoomed({ route, navigation }) {
         <View style={styles.buttons}>
           <TouchableOpacity
             style={[styles.btnStyle, { backgroundColor: ruby }]}
-            onPress={() => { }}>
+            onPress={() => { }}
+          >
             <Text style={styles.text}>Add to library</Text>
           </TouchableOpacity>
         </View>

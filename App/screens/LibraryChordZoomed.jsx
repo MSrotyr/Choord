@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import {
   View, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Keyboard,
 } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Button } from 'nachos-ui';
 import { manatee } from '../colours';
 import Chord from '../components/Chord';
-import apiService from '../apiService';
 import actions from '../actions';
 
 const styles = StyleSheet.create({
@@ -55,9 +54,9 @@ export default function LibraryChordZoomed({ route, navigation }) {
     }
   }
 
-  function removeFromLibrary(_id) {
-    apiService.removeFromLibrary(chordData._id, comment);
-    navigation.navigate('Library', { _id: chordData._id, action: 'DELETE' });
+  function removeFromLibrary() {
+    dispatch(actions.removeFromLibrary(chordData._id));
+    navigation.navigate('Library');
   }
 
   return (
