@@ -17,6 +17,8 @@ module.exports = {
     'no-continue': 'off',
     'consistent-return': 'off',
     'no-underscore-dangle': 'off',
+    'arrow-parens': 'off',
+    'no-console': 'off',
   },
 
 };

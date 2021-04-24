@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import {
   View, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Keyboard,
 } from 'react-native';
+import { useSelector } from 'react-redux';
 import { Button } from 'nachos-ui';
 import { manatee } from '../colours';
 import Chord from '../components/Chord';
 import apiService from '../apiService';
+import actions from '../actions';
 
 const styles = StyleSheet.create({
   screen: {
@@ -41,6 +43,10 @@ const styles = StyleSheet.create({
 const scale = 2;
 
 export default function LibraryChordZoomed({ route, navigation }) {
+  const test = useSelector(state => state.library);
+
+  console.log(test);
+
   const { chordData } = route.params;
   const [comment, setComment] = useState(chordData.comment
     ? chordData.comment

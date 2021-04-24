@@ -1,13 +1,18 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { ThemeProvider } from 'nachos-ui';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { ThemeProvider } from 'nachos-ui';
+import chordReducer from './reducer';
 import Library from './screens/Library';
 import AddChords from './screens/AddChords';
 import { ruby } from './colours';
 import LibraryChordZoomed from './screens/LibraryChordZoomed';
+
+const store = createStore(chordReducer);
 
 const screenOptions = {
   headerStyle: {
@@ -19,7 +24,6 @@ const screenOptions = {
   },
   headerTintColor: 'white',
 };
-
 
 const LibraryStack = createStackNavigator();
 function LibraryStackScreen() {
@@ -47,28 +51,30 @@ function AddChordsStackScreen() {
 const Tab = createBottomTabNavigator();
 export default function App() {
   return (
-    <ThemeProvider>
-      <NavigationContainer>
-        <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color }) => (route.name === 'Library'
-              ? <MaterialIcons name="library-music" size={30} color={color} />
-              : <Ionicons name="ios-add-circle-outline" size={30} color={color} />),
-          })}
-          tabBarOptions={{
-            style: {
-              borderTopColor: ruby,
-            },
-            activeBackgroundColor: ruby,
-            inactiveBackgroundColor: ruby,
-            activeTintColor: 'white',
-            inactiveTintColor: 'black',
-          }}
-        >
-          <Tab.Screen name="Library" component={LibraryStackScreen} />
-          <Tab.Screen name="Add Chords" component={AddChordsStackScreen} />
-        </Tab.Navigator>
-      </NavigationContainer>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider>
+        <NavigationContainer>
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ focused, color }) => (route.name === 'Library'
+                ? <MaterialIcons name="library-music" size={30} color={color} />
+                : <Ionicons name="ios-add-circle-outline" size={30} color={color} />),
+            })}
+            tabBarOptions={{
+              style: {
+                borderTopColor: ruby,
+              },
+              activeBackgroundColor: ruby,
+              inactiveBackgroundColor: ruby,
+              activeTintColor: 'white',
+              inactiveTintColor: 'black',
+            }}
+          >
+            <Tab.Screen name="Library" component={LibraryStackScreen} />
+            <Tab.Screen name="Add Chords" component={AddChordsStackScreen} />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </ThemeProvider>
+    </Provider>
   );
 }
