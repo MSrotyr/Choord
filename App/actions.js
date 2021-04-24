@@ -1,4 +1,10 @@
-
+const uploadLibrary = library => {
+  console.log(library);
+  return ({
+    type: 'UPLOAD_LIBRARY',
+    payload: library,
+  });
+};
 
 const updateComment = (_id, comment) => (
   {
@@ -10,4 +16,4 @@ const updateComment = (_id, comment) => (
   }
 );
 
-module.exports = { updateComment };
+module.exports = { updateComment, uploadLibrary };

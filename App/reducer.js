@@ -5,6 +5,9 @@ const INITIAL_STATE = [];
 
 const library = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case 'UPLOAD_LIBRARY':
+      return action.payload;
+
     case 'UPDATE_COMMENT':
       apiService.updateComment(action.payload._id, action.payload.comment);
       return (state.map((chord) => {
