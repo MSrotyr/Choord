@@ -17,7 +17,6 @@ export default function ChordStore({ navigation }) {
   function goToChord(chordData) {
     navigation.navigate('StoreChordZoomed', { chordData });
   }
-
   return (
     <View style={styles.screen}>
       <ChordList goToChord={goToChord} data={data} />

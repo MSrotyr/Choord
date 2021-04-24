@@ -22,4 +22,13 @@ const removeFromLibrary = _id => (
     },
   });
 
-module.exports = { updateComment, uploadLibrary, removeFromLibrary };
+const addToLibrary = chordData => (
+  {
+    type: 'ADD_TO_LIBRARY',
+    payload: chordData,
+  }
+);
+
+module.exports = {
+  updateComment, uploadLibrary, removeFromLibrary, addToLibrary,
+};

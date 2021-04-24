@@ -8,9 +8,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import chordReducer from './reducer';
 import Library from './screens/Library';
-import AddChords from './screens/AddChords';
+import ChordStore from './screens/ChordStore';
 import { ruby } from './colours';
 import LibraryChordZoomed from './screens/LibraryChordZoomed';
+import StoreChordZoomed from './screens/StoreChordZoomed';
 
 const store = createStore(chordReducer);
 
@@ -43,7 +44,8 @@ function AddChordsStackScreen() {
     <AddChordsStack.Navigator
       screenOptions={screenOptions}
     >
-      <AddChordsStack.Screen name="Add Chords" component={AddChords} />
+      <AddChordsStack.Screen name="ChordStore" component={ChordStore} />
+      <AddChordsStack.Screen name="StoreChordZoomed" component={StoreChordZoomed} />
     </AddChordsStack.Navigator>
   );
 }
@@ -71,7 +73,7 @@ export default function App() {
             }}
           >
             <Tab.Screen name="Library" component={LibraryStackScreen} />
-            <Tab.Screen name="Add Chords" component={AddChordsStackScreen} />
+            <Tab.Screen name="ChordStore" component={AddChordsStackScreen} />
           </Tab.Navigator>
         </NavigationContainer>
       </ThemeProvider>

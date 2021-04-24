@@ -2,8 +2,10 @@ import React from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity,
 } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { manatee, ruby } from '../colours';
 import Chord from '../components/Chord';
+import actions from '../actions';
 
 const styles = StyleSheet.create({
   screen: {
@@ -39,6 +41,7 @@ const styles = StyleSheet.create({
 const scale = 2;
 
 export default function LibraryChordZoomed({ route, navigation }) {
+  const dispatch = useDispatch();
   const { chordData } = route.params;
 
   return (
@@ -48,7 +51,7 @@ export default function LibraryChordZoomed({ route, navigation }) {
         <View style={styles.buttons}>
           <TouchableOpacity
             style={[styles.btnStyle, { backgroundColor: ruby }]}
-            onPress={() => { }}
+            onPress={() => { dispatch(actions.addToLibrary(chordData)); }}
           >
             <Text style={styles.text}>Add to library</Text>
           </TouchableOpacity>

@@ -22,6 +22,10 @@ const library = (state = INITIAL_STATE, action) => {
       apiService.removeFromLibrary(action.payload._id);
       return (state.filter(chord => chord._id !== action.payload._id));
 
+    case 'ADD_TO_LIBRARY':
+      apiService.addToLibrary(action.payload);
+      return [...state, action.payload];
+
     default: return state;
   }
 };

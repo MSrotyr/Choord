@@ -84,10 +84,6 @@ function genChord(chordData, scale, goToChord) {
       <View>
         {extraIconFunc(chordData, scale)}
         <Image
-          onPress={() => {
-            console.log('hey');
-            goToChord(chordData);
-          }}
           style={{ width: 102 * scale, height: 127 * scale }}
           source={chordImg}
           resizeMode="contain"
@@ -101,10 +97,15 @@ function genChord(chordData, scale, goToChord) {
 export default function Chord({
   chordData, scale, goToChord, isButton,
 }) {
+  // console.log(goToChord);
   if (isButton) {
     return (
       <TouchableOpacity
-        onPress={() => { if (goToChord) goToChord(chordData); }}
+        onPress={() => {
+          if (goToChord) {
+            goToChord(chordData);
+          }
+        }}
         style={[styles.container, {
           padding: padding * scale,
           paddingLeft: paddingLeft * scale,
