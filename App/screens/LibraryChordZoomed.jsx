@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  View, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Keyboard,
+  View, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Keyboard, BackHandler,
 } from 'react-native';
 import { manatee } from '../colours';
 import Chord from '../components/Chord';
+import apiService from '../apiService';
 
 const styles = StyleSheet.create({
   screen: {
@@ -37,13 +38,19 @@ const scale = 2;
 
 export default function LibraryChordZoomed({ route }) {
   const [comment, setComment] = useState('');
+  const chordData = route.params.chordData;
+
+  useEffect(() => {
+    return async () => {
+    }
+  }, [])
 
   return (
     <TouchableOpacity style={styles.screen} activeOpacity={1} onPress={() => Keyboard.dismiss()}>
       <KeyboardAvoidingView behavior="position">
         <View>
           <View style={styles.container}>
-            <Chord chordData={route.params.chordData} scale={scale} />
+            <Chord chordData={chordData} scale={scale} />
             <TextInput
               style={styles.input}
               value={comment}

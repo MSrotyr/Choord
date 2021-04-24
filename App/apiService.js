@@ -5,12 +5,26 @@ function getLibrary() {
     .then((data) => data.json());
 }
 
-function addToLibrary() {
-
+function addToLibrary(chordData) {
+  return fetch(baseUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(chordData)
+  })
+    .then((data) => data.json());
 }
 
 function removeFromLibrary() {
 
 }
 
-module.exports = { getLibrary, addToLibrary, removeFromLibrary };
+function updateComment(comment) {
+  return fetch(baseUrl, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ comment })
+  })
+    .then((data) => data.json());
+}
+
+module.exports = { getLibrary, addToLibrary, removeFromLibrary, updateComment };

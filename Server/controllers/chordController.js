@@ -30,4 +30,15 @@ async function removeFromLibrary(req, res) {
   }
 }
 
-module.exports = { getLibrary, addToLibrary, removeFromLibrary };
+async function updateComment(req, res) {
+  try {
+    const chord = await Chords.findOneAndUpdate({ _id: req.params.id },
+      { comment: req.body.comment }, { new: true });
+    res.status(200).send(chord);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err)
+  }
+}
+
+module.exports = { getLibrary, addToLibrary, removeFromLibrary, updateComment };
