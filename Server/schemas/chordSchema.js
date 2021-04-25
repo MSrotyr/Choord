@@ -1,4 +1,4 @@
-const mongoose = require('./');
+const mongoose = require('../models/index');
 
 const chordSchema = new mongoose.Schema({
   key: {
@@ -33,6 +33,4 @@ const chordSchema = new mongoose.Schema({
   comment: String,
 });
 
-const Chords = mongoose.model('Chord', chordSchema);
-
-module.exports = Chords;
+module.exports = chordSchema;
