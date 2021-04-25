@@ -1,33 +1,38 @@
-const uploadLibrary = library => ({
-  type: 'UPLOAD_LIBRARY',
-  payload: library,
-});
+import apiService from './apiService';
 
+function uploadLibrary() {
+  return async (dispatch) => {
+    const library = await apiService.getLibrary();
+    dispatch({
+      type: 'UPLOAD_LIBRARY',
+      payload: library,
+    });
+  };
+}
 
-const updateComment = (_id, comment) => (
-  {
-    type: 'UPDATE_COMMENT',
-    payload: {
-      _id,
-      comment,
-    },
-  }
-);
+function updateComment(_id, comment) {
+  return async (dispatch, getState) => {
+    const chord = await apiService.updateComment(_id, comment);
+    dispatch({
+      type: 'UPDATE_COMMENT',
+      payload: chord,
+    });
+  };
+}
 
-const removeFromLibrary = _id => (
-  {
-    type: 'REMOVE_FROM_LIBRARY',
-    payload: {
-      _id,
-    },
-  });
+function removeFromLibrary(_id) {
+  return async (dispatch, getState) => {
+    apiService.removeFromLibrary(_id);
+    dispatch({ type: 'REMOVE_FROM_LIBRARY', payload: { _id } });
+  };
+}
 
-const addToLibrary = chordData => (
-  {
-    type: 'ADD_TO_LIBRARY',
-    payload: chordData,
-  }
-);
+function addToLibrary(chordData) {
+  return async (dispatch, getState) => {
+    const chord = await apiService.addToLibrary(chordData);
+    dispatch({ type: 'ADD_TO_LIBRARY', payload: chord });
+  };
+}
 
 module.exports = {
   updateComment, uploadLibrary, removeFromLibrary, addToLibrary,

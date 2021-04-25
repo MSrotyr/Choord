@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { View, StyleSheet } from 'react-native';
 import { manatee } from '../colours';
-import apiService from '../apiService';
 import ChordList from '../components/ChordList';
 import actions from '../actions';
 
@@ -19,13 +18,13 @@ export default function Library({ navigation }) {
 
   useEffect(() => {
     (async () => {
-      let chords;
-      try {
-        chords = await apiService.getLibrary();
-      } catch (err) {
-        console.log(err);
-      }
-      dispatch(actions.uploadLibrary(chords));
+      // // let chords;
+      // try {
+      //   // chords = await apiService.getLibrary();
+      // } catch (err) {
+      //   console.log(err);
+      // }
+      dispatch(actions.uploadLibrary());
     })();
   }, []);
 

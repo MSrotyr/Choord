@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { ThemeProvider } from 'nachos-ui';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -13,7 +14,7 @@ import { ruby } from './colours';
 import LibraryChordZoomed from './screens/LibraryChordZoomed';
 import StoreChordZoomed from './screens/StoreChordZoomed';
 
-const store = createStore(chordReducer);
+const store = createStore(chordReducer, applyMiddleware(thunk));
 
 const screenOptions = {
   headerStyle: {

@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import apiService from './apiService';
 
 const INITIAL_STATE = [];
 
@@ -9,7 +8,6 @@ const library = (state = INITIAL_STATE, action) => {
       return action.payload;
 
     case 'UPDATE_COMMENT':
-      apiService.updateComment(action.payload._id, action.payload.comment);
       return (state.map(chord => {
         if (chord._id === action.payload._id) {
           const updatedChord = { ...chord, comment: action.payload.comment };
@@ -19,14 +17,13 @@ const library = (state = INITIAL_STATE, action) => {
       }));
 
     case 'REMOVE_FROM_LIBRARY':
-      apiService.removeFromLibrary(action.payload._id);
       return (state.filter(chord => chord._id !== action.payload._id));
 
     case 'ADD_TO_LIBRARY':
-      apiService.addToLibrary(action.payload);
       return [...state, action.payload];
 
-    default: return state;
+    default:
+      return state;
   }
 };
 
