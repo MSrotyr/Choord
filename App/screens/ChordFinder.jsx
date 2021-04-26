@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View, StyleSheet, Text, TouchableOpacity,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { manatee, ruby } from '../colours';
 import keys from '../assets/keys';
 import suffixes from '../assets/suffixes';
@@ -61,29 +62,14 @@ export default function ChordFinder({ navigation }) {
   const { chordFound } = useSelector(state => state.chordFinder);
   const dispatch = useDispatch();
   const library = useSelector(state => state.library);
+  const [index, setIndex] = useState(0);
   const scale = 1.4;
 
-  useEffect(() => {
-    (async () => {
-      if (key && suffix) {
-        await dispatch(actions.getChord(key, suffix));
-      }
-    })();
-  }, [key, suffix]);
-
-  function addToLibrary() {
-    const oldChord = library.find(chord => (
-      chord.key === chordData.key && chord.suffix === chordData.suffix));
-    if (!oldChord) {
-      dispatch(actions.addToLibrary(chordData));
-    }
-  }
-
-  function genChord() {
+  function genChord(chordVariant) {
     if (chordFound) {
       return (
         <View style={styles.container}>
-          <Chord chordData={chordData} scale={scale} />
+          <Chord chordData={chordVariant} scale={scale} />
           <View style={styles.buttons}>
             <TouchableOpacity
               style={styles.btn2}
@@ -101,6 +87,26 @@ export default function ChordFinder({ navigation }) {
       );
     }
     return null;
+  }
+
+  let data = [];
+  if (chordData) data = chordData.map(chordVariant => genChord(chordVariant));
+  const isCarousel = React.useRef(null);
+
+  useEffect(() => {
+    (async () => {
+      if (key && suffix) {
+        await dispatch(actions.getChord(key, suffix));
+      }
+    })();
+  }, [key, suffix]);
+
+  function addToLibrary() {
+    const oldChord = library.find(chord => (
+      chord.key === chordData.key && chord.suffix === chordData.suffix));
+    if (!oldChord) {
+      dispatch(actions.addToLibrary(chordData));
+    }
   }
 
   return (
@@ -121,8 +127,33 @@ export default function ChordFinder({ navigation }) {
           </View>
         </TouchableOpacity>
       </View>
-      {genChord()}
-
+      <Carousel
+        layout="tinder"
+        useScrollView
+        onSnapToItem={(newIndex) => { setIndex(newIndex); }}
+        layoutCardOffset={9}
+        inactiveSlideShift={0}
+        ref={isCarousel}
+        renderItem={({ item }) => item}
+        data={data}
+        sliderWidth={500}
+        itemWidth={300}
+      />
+      <Pagination
+        dotsLength={data.length}
+        activeDotIndex={index}
+        carouselRef={isCarousel}
+        dotStyle={{
+          width: 10,
+          height: 10,
+          borderRadius: 5,
+          marginHorizontal: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.92)',
+        }}
+        inactiveDotOpacity={0.4}
+        inactiveDotScale={0.6}
+        tappableDots
+      />
     </View>
   );
 }

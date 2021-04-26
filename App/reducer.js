@@ -37,7 +37,7 @@ const chordFinder = (state = INITIAL_STATE_CHORDFINDER, action) => {
     case 'FOUND_CHORD':
       return { ...state, chordData: action.payload, chordFound: true };
     case 'NO_CHORD_FOUND':
-      return { ...state, chordFound: false }
+      return { ...state, chordFound: false };
     default: return state;
   }
 };

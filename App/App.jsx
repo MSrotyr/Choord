@@ -6,7 +6,7 @@ import { ThemeProvider } from 'nachos-ui';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, FontAwesome5, FontAwesome } from '@expo/vector-icons';
 import Modal from './screens/Modal';
 import chordReducer from './reducer';
 import Library from './screens/Library';
@@ -86,9 +86,11 @@ function TabStack() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color }) => (route.name === 'Library'
-          ? <MaterialIcons name="library-music" size={30} color={color} />
-          : <Ionicons name="ios-add-circle-outline" size={30} color={color} />),
+        tabBarIcon: ({ focused, color }) => {
+          if (route.name === 'Library') return <MaterialIcons name="library-music" size={30} color={color} />;
+          if (route.name === 'Store') return <FontAwesome5 name="store" size={24} color={color} />;
+          return <FontAwesome name="search" size={24} color={color} />;
+        },
       })}
       tabBarOptions={{
         style: {

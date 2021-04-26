@@ -54,7 +54,7 @@ function addSlashes(suffix) {
 async function getChord(req, res) {
   try {
     const { key, suffix } = req.params;
-    const chord = await ChordStore.findOne({ key, suffix: addSlashes(suffix) });
+    const chord = await ChordStore.find({ key, suffix: addSlashes(suffix) });
     res.status(200).send(chord);
   } catch (err) {
     console.log(err);

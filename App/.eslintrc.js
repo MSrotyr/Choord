@@ -10,7 +10,6 @@ module.exports = {
   ],
   rules: {
     'react/no-unescaped-entities': 0,
-    'no-multiple-empty-lines': ['error', { max: 2, maxEOF: 0 }],
     'react/prop-types': 'off',
     'no-unused-vars': ['error', { args: 'none' }],
     'no-plusplus': 'off',
@@ -20,6 +19,9 @@ module.exports = {
     'arrow-parens': 'off',
     'no-console': 'off',
     'react/jsx-one-expression-per-line': 'off',
+    'no-multiple-empty-lines': 'off',
+    'react/destructuring-assignment': 'off',
+
   },
 
 };
