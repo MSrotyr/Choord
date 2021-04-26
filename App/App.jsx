@@ -74,31 +74,40 @@ function ChordFinderStackScreen() {
 }
 
 const Tab = createBottomTabNavigator();
+function TabStack() {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color }) => (route.name === 'Library'
+          ? <MaterialIcons name="library-music" size={30} color={color} />
+          : <Ionicons name="ios-add-circle-outline" size={30} color={color} />),
+      })}
+      tabBarOptions={{
+        style: {
+          borderTopColor: ruby,
+        },
+        activeBackgroundColor: ruby,
+        inactiveBackgroundColor: ruby,
+        activeTintColor: 'white',
+        inactiveTintColor: 'black',
+      }}
+    >
+      <Tab.Screen name="Library" component={LibraryStackScreen} />
+      <Tab.Screen name="Store" component={AddChordsStackScreen} />
+      <Tab.Screen name="Chord Finder" component={ChordFinderStackScreen} />
+    </Tab.Navigator>
+  );
+}
+
+const RootStack = createStackNavigator();
 export default function App() {
   return (
     <Provider store={store}>
       <ThemeProvider>
         <NavigationContainer>
-          <Tab.Navigator
-            screenOptions={({ route }) => ({
-              tabBarIcon: ({ focused, color }) => (route.name === 'Library'
-                ? <MaterialIcons name="library-music" size={30} color={color} />
-                : <Ionicons name="ios-add-circle-outline" size={30} color={color} />),
-            })}
-            tabBarOptions={{
-              style: {
-                borderTopColor: ruby,
-              },
-              activeBackgroundColor: ruby,
-              inactiveBackgroundColor: ruby,
-              activeTintColor: 'white',
-              inactiveTintColor: 'black',
-            }}
-          >
-            <Tab.Screen name="Library" component={LibraryStackScreen} />
-            <Tab.Screen name="Store" component={AddChordsStackScreen} />
-            <Tab.Screen name="Chord Finder" component={ChordFinderStackScreen} />
-          </Tab.Navigator>
+          <RootStack.Navigator>
+            <RootStack.Screen name="Tabs" component={TabStack} options={{ headerShown: false }} />
+          </RootStack.Navigator>
         </NavigationContainer>
       </ThemeProvider>
     </Provider>
