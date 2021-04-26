@@ -43,8 +43,12 @@ function updateKeyOrSuffix(keyOrSuffix) {
 
 function getChord(key, suffix) {
   return async (dispatch) => {
-    const chord = await apiService.getChord(key, suffix);
-    dispatch({ type: 'FOUND_CHORD', payload: chord });
+    try {
+      const chord = await apiService.getChord(key, suffix);
+      dispatch({ type: 'FOUND_CHORD', payload: chord });
+    } catch (err) {
+      dispatch({ type: 'NO_CHORD_FOUND' });
+    }
   };
 }
 

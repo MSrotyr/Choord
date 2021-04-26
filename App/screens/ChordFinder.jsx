@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   btnContainer: {
-    alignItems: 'center',
+    marginVertical: 20,
   },
   btn: {
     backgroundColor: ruby,
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,
-    height: 80,
+    height: 50,
     width: 250,
     margin: 5,
   },
@@ -58,9 +58,10 @@ const styles = StyleSheet.create({
 export default function ChordFinder({ navigation }) {
   const { key, suffix } = useSelector(state => state.chordFinder);
   const { chordData } = useSelector(state => state.chordFinder);
+  const { chordFound } = useSelector(state => state.chordFinder);
   const dispatch = useDispatch();
   const library = useSelector(state => state.library);
-  const scale = 1;
+  const scale = 1.4;
 
   useEffect(() => {
     (async () => {
@@ -79,7 +80,7 @@ export default function ChordFinder({ navigation }) {
   }
 
   function genChord() {
-    if (chordData) {
+    if (chordFound) {
       return (
         <View style={styles.container}>
           <Chord chordData={chordData} scale={scale} />
@@ -93,7 +94,13 @@ export default function ChordFinder({ navigation }) {
           </View>
         </View>
       );
-    } return null;
+    }
+    if (chordFound === false) {
+      return (
+        <Text>No chord found</Text>
+      );
+    }
+    return null;
   }
 
   return (

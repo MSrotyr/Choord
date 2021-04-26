@@ -47,15 +47,24 @@ function updateComment(_id, comment) {
   }
 }
 
+function removeSlashes(suffix) {
+  let res = '';
+  for (let i = 0; i < suffix.length; i++) {
+    if (suffix[i] === '/') res += 'S';
+    else res += suffix[i];
+  }
+  return res;
+}
+
 async function getChord(key, suffix) {
   try {
-    console.log(`${baseUrlChordStore}/${key}/${suffix}`);
-    return fetch(`${baseUrlChordStore}/${key}/${suffix}`)
+    return fetch(`${baseUrlChordStore}/${key}/${removeSlashes(suffix)}`)
       .then((data) => data.json());
   } catch (err) {
     console.log(err);
   }
 }
+
 
 module.exports = {
   getLibrary, addToLibrary, removeFromLibrary, updateComment, getChord,
