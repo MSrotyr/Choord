@@ -34,6 +34,20 @@ function addToLibrary(chordData) {
   };
 }
 
+function updateKeyOrSuffix(keyOrSuffix) {
+  return {
+    type: 'UPDATE_KEY_OR_SUFFIX',
+    payload: keyOrSuffix,
+  };
+}
+
+function getChord(key, suffix) {
+  return async (dispatch) => {
+    const chord = await apiService.getChord(key, suffix);
+    dispatch({ type: 'FOUND_CHORD', payload: chord });
+  };
+}
+
 module.exports = {
-  updateComment, uploadLibrary, removeFromLibrary, addToLibrary,
+  updateComment, uploadLibrary, removeFromLibrary, addToLibrary, updateKeyOrSuffix, getChord,
 };

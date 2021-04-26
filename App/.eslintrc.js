@@ -19,6 +19,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'arrow-parens': 'off',
     'no-console': 'off',
+    'react/jsx-one-expression-per-line': 'off',
   },
 
 };

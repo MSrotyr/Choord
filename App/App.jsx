@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import Modal from './screens/Modal';
 import chordReducer from './reducer';
 import Library from './screens/Library';
 import ChordStore from './screens/ChordStore';
@@ -69,6 +70,13 @@ function ChordFinderStackScreen() {
       screenOptions={screenOptions}
     >
       <ChordFinderStack.Screen name="Chord Finder" component={ChordFinder} />
+      <AddChordsStack.Screen
+        name="StoreChordZoomed"
+        component={StoreChordZoomed}
+        options={({ route }) => (
+          { title: `${route.params.chordData.key} ${route.params.chordData.suffix}` }
+        )}
+      />
     </ChordFinderStack.Navigator>
   );
 }
@@ -105,8 +113,9 @@ export default function App() {
     <Provider store={store}>
       <ThemeProvider>
         <NavigationContainer>
-          <RootStack.Navigator>
+          <RootStack.Navigator mode="modal">
             <RootStack.Screen name="Tabs" component={TabStack} options={{ headerShown: false }} />
+            <RootStack.Screen name="Modal" component={Modal} />
           </RootStack.Navigator>
         </NavigationContainer>
       </ThemeProvider>

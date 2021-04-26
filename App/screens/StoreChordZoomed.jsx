@@ -51,7 +51,7 @@ export default function LibraryChordZoomed({ route, navigation }) {
     if (!oldChord) {
       dispatch(actions.addToLibrary(chordData));
     }
-    navigation.navigate('Store');
+    navigation.goBack();
   }
 
   return (
