@@ -17,15 +17,7 @@ export default function Library({ navigation }) {
   const library = useSelector(state => state.library);
 
   useEffect(() => {
-    (async () => {
-      // // let chords;
-      // try {
-      //   // chords = await apiService.getLibrary();
-      // } catch (err) {
-      //   console.log(err);
-      // }
-      dispatch(actions.uploadLibrary());
-    })();
+    dispatch(actions.uploadLibrary());
   }, []);
 
   function goToChord(chordData) {

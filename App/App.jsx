@@ -13,6 +13,7 @@ import ChordStore from './screens/ChordStore';
 import { ruby } from './colours';
 import LibraryChordZoomed from './screens/LibraryChordZoomed';
 import StoreChordZoomed from './screens/StoreChordZoomed';
+import ChordFinder from './screens/ChordFinder';
 
 const store = createStore(chordReducer, applyMiddleware(thunk));
 
@@ -61,6 +62,17 @@ function AddChordsStackScreen() {
   );
 }
 
+const ChordFinderStack = createStackNavigator();
+function ChordFinderStackScreen() {
+  return (
+    <ChordFinderStack.Navigator
+      screenOptions={screenOptions}
+    >
+      <ChordFinderStack.Screen name="Chord Finder" component={ChordFinder} />
+    </ChordFinderStack.Navigator>
+  );
+}
+
 const Tab = createBottomTabNavigator();
 export default function App() {
   return (
@@ -85,6 +97,7 @@ export default function App() {
           >
             <Tab.Screen name="Library" component={LibraryStackScreen} />
             <Tab.Screen name="Store" component={AddChordsStackScreen} />
+            <Tab.Screen name="Chord Finder" component={ChordFinderStackScreen} />
           </Tab.Navigator>
         </NavigationContainer>
       </ThemeProvider>
