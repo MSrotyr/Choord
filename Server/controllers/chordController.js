@@ -1,3 +1,4 @@
+const ChordStore = require('../models/chordStore');
 const Library = require('../models/library');
 
 async function getLibrary(req, res) {
@@ -41,4 +42,29 @@ async function updateComment(req, res) {
   }
 }
 
-module.exports = { getLibrary, addToLibrary, removeFromLibrary, updateComment };
+async function getChord(req, res) {
+  try {
+    const { key, suffix } = req.params;
+    const chord = await ChordStore.findOne({ key, suffix });
+    res.status(200).send(chord);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err)
+  }
+}
+
+function stringToArr(str) {
+  const arr = [];
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] !== ',') {
+      if (str[i + 1] === ',' || !str[i + 1]) arr.push(parseInt(str[i]))
+      else {
+        arr.push(parseInt(str.slice(i, i + 2)));
+        i++;
+      }
+    }
+  }
+  return arr;
+}
+
+module.exports = { getLibrary, addToLibrary, removeFromLibrary, updateComment, getChord };

@@ -22,21 +22,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function minMaxFretFunc(data) {
-  let minFret = 40; // Needs to be any number above 30
-  for (let i = 0; i < data.frets.length; i++) {
-    if (data.frets[i] < minFret && data.frets[i] > 0) minFret = data.frets[i];
-  }
-  const maxFret = Math.max(...data.frets);
-  return [minFret, maxFret];
-}
-
 function extraIconFunc(data, scale) {
-  let fretStart = 1;
-  const [minFret, maxFret] = minMaxFretFunc(data);
-  if (maxFret > 4) {
-    fretStart = minFret;
-  }
   const finished = [];
   const components = [];
   for (let i = 0; i < 6; i++) {
@@ -54,7 +40,7 @@ function extraIconFunc(data, scale) {
         scale={scale}
         startStringNum={i}
         endStringNum={lastIndex}
-        fretNum={data.frets[i] - fretStart}
+        fretNum={data.frets[i] - 1}
         fingerNum={data.fingers[i]}
         key={i}
       />);
@@ -65,13 +51,13 @@ function extraIconFunc(data, scale) {
           scale={scale}
           key={i}
           stringNum={i}
-          fretNum={data.frets[i] - fretStart}
+          fretNum={data.frets[i] - 1}
           fingerNum={data.fingers[i]}
         />,
       );
     }
   }
-  components.push(<FretNumber scale={scale} key="key" fretNum={fretStart} />);
+  components.push(<FretNumber scale={scale} key="key" fretNum={data.baseFret} />);
   return components;
 }
 
