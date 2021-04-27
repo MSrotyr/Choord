@@ -3,13 +3,15 @@ import {
   View, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Keyboard, Text,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { celadon, manatee, ruby } from '../colours';
+import { LinearGradient } from 'expo-linear-gradient';
+import {
+  celadon, grad2, grad1, ruby,
+} from '../colours';
 import Chord from '../components/Chord';
 import actions from '../actions';
 
 const styles = StyleSheet.create({
   screen: {
-    backgroundColor: manatee,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
@@ -73,36 +75,45 @@ export default function LibraryChordZoomed({ route, navigation }) {
   }
 
   return (
-    <TouchableOpacity style={styles.screen} activeOpacity={1} onPress={() => Keyboard.dismiss()}>
-      <KeyboardAvoidingView behavior="position">
-        <View style={styles.container}>
-          <Chord chordData={chordData} scale={scale} />
-          <View>
-            <TextInput
-              style={styles.input}
-              value={comment}
-              onChangeText={setComment}
-              placeholder="Comments..."
-              multiline
-            />
-            <View style={styles.buttons}>
-              <TouchableOpacity
-                onPress={updateComment}
-                style={[styles.btnStyle, { backgroundColor: celadon }]}
-              >
-                <Text style={styles.text}>Add comment</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={removeFromLibrary}
-                style={[styles.btnStyle, { backgroundColor: ruby }]}
-              >
-                <Text style={styles.text}>Delete Chord</Text>
-              </TouchableOpacity>
-            </View>
+    <LinearGradient
+      colors={[grad1, grad2]}
+      style={{ flex: 1 }}
+      start={[0.5, 0]}
+      end={[0.5, 1]}
+      locations={[0, 1]}
+    >
+      <TouchableOpacity style={styles.screen} activeOpacity={1} onPress={() => Keyboard.dismiss()}>
+        <KeyboardAvoidingView behavior="position">
+          <View style={styles.container}>
+            <Chord chordData={chordData} scale={scale} />
+            <View>
+              <TextInput
+                style={styles.input}
+                value={comment}
+                onChangeText={setComment}
+                placeholder="Comments..."
+                multiline
+              />
+              <View style={styles.buttons}>
+                <TouchableOpacity
+                  onPress={updateComment}
+                  style={[styles.btnStyle, { backgroundColor: celadon }]}
+                >
+                  <Text style={styles.text}>Add comment</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={removeFromLibrary}
+                  style={[styles.btnStyle, { backgroundColor: ruby }]}
+                >
+                  <Text style={styles.text}>Delete Chord</Text>
+                </TouchableOpacity>
+              </View>
 
+            </View>
           </View>
-        </View>
-      </KeyboardAvoidingView>
-    </TouchableOpacity>
+        </KeyboardAvoidingView>
+      </TouchableOpacity>
+    </LinearGradient>
+
   );
 }

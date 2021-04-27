@@ -20,6 +20,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 5,
   },
+  black: {
+    backgroundColor: 'black',
+    zIndex: 2,
+  },
 });
 
 function extraIconFunc(data, scale) {
@@ -61,6 +65,16 @@ function extraIconFunc(data, scale) {
   return components;
 }
 
+function chordLines(scale) {
+  const topBarX = 0;
+  const topBarY = 0;
+  const xsep = 10 * scale;
+  const ysep = 10 * scale;
+  return (
+    <View style={[styles.black, { top: topBarX, left: topBarY }]}></View>
+  );
+}
+
 function genChord(chordData, scale, goToChord) {
   return (
     <View>
@@ -68,6 +82,7 @@ function genChord(chordData, scale, goToChord) {
         {`${chordData.key} ${chordData.suffix}`}
       </Text>
       <View>
+        {chordLines()}
         {extraIconFunc(chordData, scale)}
         <Image
           style={{ width: 102 * scale, height: 127 * scale }}
@@ -83,7 +98,6 @@ function genChord(chordData, scale, goToChord) {
 export default function Chord({
   chordData, scale, goToChord, isButton,
 }) {
-  // console.log(goToChord);
   if (isButton) {
     return (
       <TouchableOpacity

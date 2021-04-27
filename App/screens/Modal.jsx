@@ -3,12 +3,14 @@ import { useDispatch } from 'react-redux';
 import {
   View, StyleSheet, Text, TouchableOpacity, FlatList,
 } from 'react-native';
-import { manatee, ruby } from '../colours';
+import { LinearGradient } from 'expo-linear-gradient';
+import {
+  grad1, grad2, ruby,
+} from '../colours';
 import actions from '../actions';
 
 const styles = StyleSheet.create({
   screen: {
-    backgroundColor: manatee,
     flex: 1,
     alignItems: 'center',
   },
@@ -32,26 +34,35 @@ export default function Modal({ route, navigation }) {
   const dispatch = useDispatch();
   const { data } = route.params;
   return (
-    <View style={styles.screen}>
-      <FlatList
-        style={styles.list}
-        numColumns={3}
-        data={data}
-        keyExtractor={(item) => item}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => {
-              dispatch(actions.updateKeyOrSuffix(
-                { mode: route.params.mode, [route.params.mode]: item },
-              ));
-              navigation.navigate('Chord Finder');
-            }}
-          >
-            <Text>{item}</Text>
-          </TouchableOpacity>
-        )}
-      />
-    </View>
+    <LinearGradient
+      colors={[grad1, grad2]}
+      style={{ flex: 1 }}
+      start={[0.5, 0]}
+      end={[0.5, 1]}
+      locations={[0, 1]}
+    >
+      <View style={styles.screen}>
+        <FlatList
+          style={styles.list}
+          numColumns={3}
+          data={data}
+          keyExtractor={(item) => item}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => {
+                dispatch(actions.updateKeyOrSuffix(
+                  { mode: route.params.mode, [route.params.mode]: item },
+                ));
+                navigation.navigate('Chord Finder');
+              }}
+            >
+              <Text>{item}</Text>
+            </TouchableOpacity>
+          )}
+        />
+      </View>
+    </LinearGradient>
+
   );
 }

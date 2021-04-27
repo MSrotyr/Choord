@@ -1,16 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { View, StyleSheet } from 'react-native';
-import { manatee } from '../colours';
+import { LinearGradient } from 'expo-linear-gradient';
 import ChordList from '../components/ChordList';
 import actions from '../actions';
-
-const styles = StyleSheet.create({
-  screen: {
-    backgroundColor: manatee,
-    flex: 1,
-  },
-});
+import { grad1, grad2 } from '../colours';
 
 export default function Library({ navigation }) {
   const dispatch = useDispatch();
@@ -25,8 +18,14 @@ export default function Library({ navigation }) {
   }
 
   return (
-    <View style={styles.screen}>
+    <LinearGradient
+      colors={[grad1, grad2]}
+      style={{ flex: 1 }}
+      start={[0.5, 0]}
+      end={[0.5, 1]}
+      locations={[0, 1]}
+    >
       <ChordList goToChord={goToChord} data={library} />
-    </View>
+    </LinearGradient>
   );
 }

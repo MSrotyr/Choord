@@ -102,8 +102,8 @@ function TabStack() {
         inactiveTintColor: 'black',
       }}
     >
-      <Tab.Screen name="Library" component={LibraryStackScreen} />
       <Tab.Screen name="Store" component={AddChordsStackScreen} />
+      <Tab.Screen name="Library" component={LibraryStackScreen} />
       <Tab.Screen name="Chord Finder" component={ChordFinderStackScreen} />
     </Tab.Navigator>
   );

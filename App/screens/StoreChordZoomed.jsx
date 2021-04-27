@@ -3,13 +3,15 @@ import {
   View, Text, StyleSheet, TouchableOpacity,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { manatee, ruby } from '../colours';
+import { LinearGradient } from 'expo-linear-gradient';
+import {
+  grad1, grad2, ruby,
+} from '../colours';
 import Chord from '../components/Chord';
 import actions from '../actions';
 
 const styles = StyleSheet.create({
   screen: {
-    backgroundColor: manatee,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
@@ -55,18 +57,27 @@ export default function LibraryChordZoomed({ route, navigation }) {
   }
 
   return (
-    <View style={styles.screen}>
-      <View style={styles.container}>
-        <Chord chordData={chordData} scale={scale} />
-        <View style={styles.buttons}>
-          <TouchableOpacity
-            style={styles.btnStyle}
-            onPress={addToLibrary}
-          >
-            <Text style={styles.text}>Add to library</Text>
-          </TouchableOpacity>
+    <LinearGradient
+      colors={[grad1, grad2]}
+      style={{ flex: 1 }}
+      start={[0.5, 0]}
+      end={[0.5, 1]}
+      locations={[0, 1]}
+    >
+      <View style={styles.screen}>
+        <View style={styles.container}>
+          <Chord chordData={chordData} scale={scale} />
+          <View style={styles.buttons}>
+            <TouchableOpacity
+              style={styles.btnStyle}
+              onPress={addToLibrary}
+            >
+              <Text style={styles.text}>Add to library</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
+    </LinearGradient>
+
   );
 }

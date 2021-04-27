@@ -51,10 +51,19 @@ function addSlashes(suffix) {
   return res;
 }
 
+function addHashes(suffix) {
+  let res = '';
+  for (let i = 0; i < suffix.length; i++) {
+    if (suffix[i] === 'H') res += '#';
+    else res += suffix[i];
+  }
+  return res;
+}
+
 async function getChord(req, res) {
   try {
     const { key, suffix } = req.params;
-    const chord = await ChordStore.find({ key, suffix: addSlashes(suffix) });
+    const chord = await ChordStore.find({ key: addHashes(key), suffix: addSlashes(suffix) });
     res.status(200).send(chord);
   } catch (err) {
     console.log(err);

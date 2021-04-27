@@ -32,12 +32,12 @@ const chordFinder = (state = INITIAL_STATE_CHORDFINDER, action) => {
   switch (action.type) {
     case 'UPDATE_KEY_OR_SUFFIX':
       return action.payload.mode === 'key'
-        ? { key: action.payload.key, suffix: state.suffix }
-        : { key: state.key, suffix: action.payload.suffix };
+        ? { ...state, key: action.payload.key }
+        : { ...state, suffix: action.payload.suffix };
     case 'FOUND_CHORD':
       return { ...state, chordData: action.payload, chordFound: true };
     case 'NO_CHORD_FOUND':
-      return { ...state, chordFound: false };
+      return { ...state, chordFound: false, chordData: [] };
     default: return state;
   }
 };

@@ -56,9 +56,18 @@ function removeSlashes(suffix) {
   return res;
 }
 
+function removeHashes(suffix) {
+  let res = '';
+  for (let i = 0; i < suffix.length; i++) {
+    if (suffix[i] === '#') res += 'H';
+    else res += suffix[i];
+  }
+  return res;
+}
+
 async function getChord(key, suffix) {
   try {
-    return fetch(`${baseUrlChordStore}/${key}/${removeSlashes(suffix)}`)
+    return fetch(`${baseUrlChordStore}/${removeHashes(key)}/${removeSlashes(suffix)}`)
       .then((data) => data.json());
   } catch (err) {
     console.log(err);
