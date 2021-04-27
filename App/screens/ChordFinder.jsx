@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
-  grad1, grad2, ruby,
+  grad1, grad2, mintcream, ruby,
 } from '../colours';
 import keys from '../assets/keys';
 import suffixes from '../assets/suffixes';
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   btn2: {
-    marginVertical: 15,
+    marginVertical: 10,
     marginHorizontal: 5,
     alignItems: 'center',
     justifyContent: 'center',
@@ -45,13 +45,12 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
-    fontSize: 20,
   },
   container: {
     width: 299,
     padding: 10,
     borderRadius: 10,
-    backgroundColor: 'white',
+    backgroundColor: mintcream,
     borderWidth: 2,
     borderColor: 'black',
     alignItems: 'center',
@@ -67,7 +66,7 @@ export default function ChordFinder({ navigation }) {
   const library = useSelector(state => state.library);
   const [index, setIndex] = useState(0);
   const [isMount, setIsMount] = useState(true);
-  const scale = 1.4;
+  const scale = 1.2;
 
   function addToLibrary(chordVariant) {
     const oldChord = library.find(chord => (

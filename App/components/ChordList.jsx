@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 import Chord from './Chord';
 
-const scale = 0.85;
+const scale = 0.83;
 
 const styles = StyleSheet.create({
   list: {

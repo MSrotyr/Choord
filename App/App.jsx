@@ -85,6 +85,7 @@ const Tab = createBottomTabNavigator();
 function TabStack() {
   return (
     <Tab.Navigator
+      lazy={false}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color }) => {
           if (route.name === 'Library') return <MaterialIcons name="library-music" size={30} color={color} />;
@@ -117,7 +118,21 @@ export default function App() {
         <NavigationContainer>
           <RootStack.Navigator mode="modal">
             <RootStack.Screen name="Tabs" component={TabStack} options={{ headerShown: false }} />
-            <RootStack.Screen name="Modal" component={Modal} />
+            <RootStack.Screen
+              name="Modal"
+              component={Modal}
+              headerStyle={{ backgroundColor: 'red' }}
+              options={({ route }) => (
+
+                {
+                  title: `Choose a ${route.params.mode}`,
+                  headerStyle: {
+                    backgroundColor: ruby,
+                  },
+                  headerTintColor: 'white',
+                }
+              )}
+            />
           </RootStack.Navigator>
         </NavigationContainer>
       </ThemeProvider>

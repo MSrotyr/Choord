@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const startX = -22;
+const startX = -21;
 const startY = 1;
 
 export default function FretNumber({ fretNum, scale }) {
@@ -11,11 +11,11 @@ export default function FretNumber({ fretNum, scale }) {
         zIndex: 1,
         position: 'absolute',
         top: scale * startY,
-        left: scale * startX,
+        left: scale * (fretNum >= 10 ? startX - 2.5 : startX),
       }
     }
     >
-      <Text style={{ fontSize: 12 * scale }}>{`${fretNum} fr`}</Text>
+      <Text style={{ fontSize: 10 * scale }}>{`${fretNum} fr`}</Text>
     </View>
   );
 }

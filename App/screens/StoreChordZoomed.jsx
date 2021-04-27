@@ -5,7 +5,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
-  grad1, grad2, ruby,
+  grad1, grad2, mintcream, ruby,
 } from '../colours';
 import Chord from '../components/Chord';
 import actions from '../actions';
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     width: 299,
     padding: 10,
     borderRadius: 10,
-    backgroundColor: 'white',
+    backgroundColor: mintcream,
     borderWidth: 2,
     borderColor: 'black',
     alignItems: 'center',
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const scale = 2;
+const scale = 1.6;
 
 export default function LibraryChordZoomed({ route, navigation }) {
   const library = useSelector(state => state.library);

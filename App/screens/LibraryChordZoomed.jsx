@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   View, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Keyboard, Text,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
-  celadon, grad2, grad1, ruby,
+  grad2, grad1, ruby, mintcream,
 } from '../colours';
 import Chord from '../components/Chord';
 import actions from '../actions';
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     borderRadius: 10,
-    backgroundColor: 'white',
+    backgroundColor: mintcream,
     borderWidth: 2,
     borderColor: 'black',
     alignItems: 'center',
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const scale = 2;
+const scale = 1.6;
 
 export default function LibraryChordZoomed({ route, navigation }) {
   const dispatch = useDispatch();
@@ -63,11 +63,19 @@ export default function LibraryChordZoomed({ route, navigation }) {
     ? chordData.comment
     : '');
 
-  function updateComment() {
-    if (comment && comment !== chordData.comment) {
-      dispatch(actions.updateComment(chordData._id, comment));
+  const commentRef = useRef(comment);
+
+  function updateComment(commentToAdd) {
+    if (commentToAdd && commentToAdd !== chordData.comment) {
+      dispatch(actions.updateComment(chordData._id, commentToAdd));
     }
   }
+
+  useEffect(() => (
+    () => {
+      updateComment(commentRef.current);
+    }
+  ), []);
 
   function removeFromLibrary() {
     dispatch(actions.removeFromLibrary(chordData._id));
@@ -90,17 +98,14 @@ export default function LibraryChordZoomed({ route, navigation }) {
               <TextInput
                 style={styles.input}
                 value={comment}
-                onChangeText={setComment}
+                onChangeText={(newComment) => {
+                  setComment(newComment);
+                  commentRef.current = newComment;
+                }}
                 placeholder="Comments..."
                 multiline
               />
               <View style={styles.buttons}>
-                <TouchableOpacity
-                  onPress={updateComment}
-                  style={[styles.btnStyle, { backgroundColor: celadon }]}
-                >
-                  <Text style={styles.text}>Add comment</Text>
-                </TouchableOpacity>
                 <TouchableOpacity
                   onPress={removeFromLibrary}
                   style={[styles.btnStyle, { backgroundColor: ruby }]}

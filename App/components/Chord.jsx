@@ -1,28 +1,32 @@
 import React from 'react';
 import {
-  View, StyleSheet, Image, Text, TouchableOpacity,
+  View, StyleSheet, Text, TouchableOpacity,
 } from 'react-native';
-import chordImg from '../assets/chord.png';
 import Number from './Number';
 import X from './X';
 import O from './O';
 import FretNumber from './FretNumber';
 import Barre from './Barre';
+import { mintcream } from '../colours';
 
 const padding = 8;
-const paddingLeft = 22;
+const paddingLeft = 24;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: mintcream,
     margin: 6.5,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,
   },
-  black: {
+  topBar: {
     backgroundColor: 'black',
-    zIndex: 2,
+    position: 'absolute',
+  },
+  line: {
+    backgroundColor: 'black',
+    position: 'absolute',
   },
 });
 
@@ -65,30 +69,79 @@ function extraIconFunc(data, scale) {
   return components;
 }
 
-function chordLines(scale) {
-  const topBarX = 0;
-  const topBarY = 0;
-  const xsep = 10 * scale;
-  const ysep = 10 * scale;
+function topBar(scale) {
   return (
-    <View style={[styles.black, { top: topBarX, left: topBarY }]}></View>
+    <View
+      style={[styles.topBar,
+        {
+          width: 102 * scale,
+          height: 7 * scale,
+        }]}
+    />
   );
 }
 
+function horizontalLines(scale) {
+  const ysep = 30 * scale;
+  const startY = 34 * scale;
+  const components = [];
+  for (let i = 0; i < 4; i++) {
+    components.push(
+      <View
+        key={i}
+        style={[styles.line,
+          {
+            top: startY + ysep * i,
+            width: 102 * scale,
+            height: 3 * scale,
+          }]}
+      />,
+    );
+  }
+  return components;
+}
+
+function verticalLines(scale) {
+  const xsep = 20 * scale;
+  const components = [];
+  for (let i = 0; i < 6; i++) {
+    components.push(
+      <View
+        key={i}
+        style={[styles.line,
+          {
+            left: xsep * i,
+            width: 2 * scale,
+            height: 127 * scale,
+          }]}
+      />,
+    );
+  }
+  return components;
+}
+
 function genChord(chordData, scale, goToChord) {
+  let title;
+  if (chordData.suffix === 'major' || chordData.suffix === 'minor') {
+    title = `${chordData.key} ${chordData.suffix}`;
+  } else title = chordData.key + chordData.suffix;
   return (
     <View>
       <Text style={{ fontSize: 16 * scale, marginBottom: 14 * scale }}>
-        {`${chordData.key} ${chordData.suffix}`}
+        {title}
       </Text>
       <View>
-        {chordLines()}
+        {topBar(scale)}
+        {horizontalLines(scale)}
+        {verticalLines(scale)}
         {extraIconFunc(chordData, scale)}
-        <Image
+        <View style={{ width: 102 * scale, height: 127 * scale }} />
+        {/* {Switching out image for CSS} */}
+        {/* <Image
           style={{ width: 102 * scale, height: 127 * scale }}
           source={chordImg}
           resizeMode="contain"
-        />
+        /> */}
       </View>
     </View>
   );
@@ -116,5 +169,11 @@ export default function Chord({
     );
   }
 
-  return genChord(chordData, scale, goToChord);
+  return (
+    <View
+      style={[styles.container, { padding: padding * scale, paddingLeft: paddingLeft * scale }]}
+    >
+      {genChord(chordData, scale, goToChord)}
+    </View>
+  );
 }
