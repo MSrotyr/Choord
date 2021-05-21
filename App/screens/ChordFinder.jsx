@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
-  grad1, grad2, mintcream, ruby,
+  grad1, grad2, mintcream, raspberry,
 } from '../colours';
 import keys from '../assets/keys';
 import suffixes from '../assets/suffixes';
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   btn: {
-    backgroundColor: ruby,
+    backgroundColor: raspberry,
     borderColor: 'black',
     borderWidth: 2,
     alignItems: 'center',
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: ruby,
+    backgroundColor: raspberry,
     padding: 10,
     borderRadius: 5,
     height: 40,

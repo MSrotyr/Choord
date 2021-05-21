@@ -1,13 +1,11 @@
-import React from 'react';
-import {
-  View, StyleSheet, Text, TouchableOpacity,
-} from 'react-native';
-import Number from './Number';
-import X from './X';
-import O from './O';
-import FretNumber from './FretNumber';
-import Barre from './Barre';
-import { mintcream } from '../colours';
+import React from "react";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import Number from "./Number";
+import X from "./X";
+import O from "./O";
+import FretNumber from "./FretNumber";
+import Barre from "./Barre";
+import { mintcream } from "../colours";
 
 const padding = 8;
 const paddingLeft = 24;
@@ -16,17 +14,17 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: mintcream,
     margin: 6.5,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     borderRadius: 5,
   },
   topBar: {
-    backgroundColor: 'black',
-    position: 'absolute',
+    backgroundColor: "black",
+    position: "absolute",
   },
   line: {
-    backgroundColor: 'black',
-    position: 'absolute',
+    backgroundColor: "black",
+    position: "absolute",
   },
 });
 
@@ -39,19 +37,22 @@ function extraIconFunc(data, scale) {
     const restRev = data.fingers.slice(i + 1).reverse();
     const lastIndex = 6 - 1 - restRev.indexOf(data.fingers[i]);
 
-    if (data.frets[i] === -1) components.push(<X scale={scale} key={i} stringNum={i} />);
-    else if (data.frets[i] === 0) components.push(<O scale={scale} key={i} stringNum={i} />);
-
+    if (data.frets[i] === -1)
+      components.push(<X scale={scale} key={i} stringNum={i} />);
+    else if (data.frets[i] === 0)
+      components.push(<O scale={scale} key={i} stringNum={i} />);
     else if (lastIndex !== 6) {
       // barre chord
-      components.push(<Barre
-        scale={scale}
-        startStringNum={i}
-        endStringNum={lastIndex}
-        fretNum={data.frets[i] - 1}
-        fingerNum={data.fingers[i]}
-        key={i}
-      />);
+      components.push(
+        <Barre
+          scale={scale}
+          startStringNum={i}
+          endStringNum={lastIndex}
+          fretNum={data.frets[i] - 1}
+          fingerNum={data.fingers[i]}
+          key={i}
+        />
+      );
       finished.push(data.fingers[i]);
     } else {
       components.push(
@@ -61,22 +62,26 @@ function extraIconFunc(data, scale) {
           stringNum={i}
           fretNum={data.frets[i] - 1}
           fingerNum={data.fingers[i]}
-        />,
+        />
       );
     }
   }
-  components.push(<FretNumber scale={scale} key="key" fretNum={data.baseFret} />);
+  components.push(
+    <FretNumber scale={scale} key="key" fretNum={data.baseFret} />
+  );
   return components;
 }
 
 function topBar(scale) {
   return (
     <View
-      style={[styles.topBar,
+      style={[
+        styles.topBar,
         {
           width: 102 * scale,
           height: 7 * scale,
-        }]}
+        },
+      ]}
     />
   );
 }
@@ -89,13 +94,15 @@ function horizontalLines(scale) {
     components.push(
       <View
         key={i}
-        style={[styles.line,
+        style={[
+          styles.line,
           {
             top: startY + ysep * i,
             width: 102 * scale,
             height: 3 * scale,
-          }]}
-      />,
+          },
+        ]}
+      />
     );
   }
   return components;
@@ -108,13 +115,15 @@ function verticalLines(scale) {
     components.push(
       <View
         key={i}
-        style={[styles.line,
+        style={[
+          styles.line,
           {
             left: xsep * i,
             width: 2 * scale,
             height: 127 * scale,
-          }]}
-      />,
+          },
+        ]}
+      />
     );
   }
   return components;
@@ -122,7 +131,7 @@ function verticalLines(scale) {
 
 function genChord(chordData, scale, goToChord) {
   let title;
-  if (chordData.suffix === 'major' || chordData.suffix === 'minor') {
+  if (chordData.suffix === "major" || chordData.suffix === "minor") {
     title = `${chordData.key} ${chordData.suffix}`;
   } else title = chordData.key + chordData.suffix;
   return (
@@ -136,21 +145,12 @@ function genChord(chordData, scale, goToChord) {
         {verticalLines(scale)}
         {extraIconFunc(chordData, scale)}
         <View style={{ width: 102 * scale, height: 127 * scale }} />
-        {/* {Switching out image for CSS} */}
-        {/* <Image
-          style={{ width: 102 * scale, height: 127 * scale }}
-          source={chordImg}
-          resizeMode="contain"
-        /> */}
       </View>
     </View>
   );
 }
 
-
-export default function Chord({
-  chordData, scale, goToChord, isButton,
-}) {
+export default function Chord({ chordData, scale, goToChord, isButton }) {
   if (isButton) {
     return (
       <TouchableOpacity
@@ -159,10 +159,13 @@ export default function Chord({
             goToChord(chordData);
           }
         }}
-        style={[styles.container, {
-          padding: padding * scale,
-          paddingLeft: paddingLeft * scale,
-        }]}
+        style={[
+          styles.container,
+          {
+            padding: padding * scale,
+            paddingLeft: paddingLeft * scale,
+          },
+        ]}
       >
         {genChord(chordData, scale, goToChord)}
       </TouchableOpacity>
@@ -171,7 +174,10 @@ export default function Chord({
 
   return (
     <View
-      style={[styles.container, { padding: padding * scale, paddingLeft: paddingLeft * scale }]}
+      style={[
+        styles.container,
+        { padding: padding * scale, paddingLeft: paddingLeft * scale },
+      ]}
     >
       {genChord(chordData, scale, goToChord)}
     </View>

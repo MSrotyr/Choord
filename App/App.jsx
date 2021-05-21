@@ -2,7 +2,6 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { ThemeProvider } from 'nachos-ui';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -11,7 +10,7 @@ import Modal from './screens/Modal';
 import chordReducer from './reducer';
 import Library from './screens/Library';
 import ChordStore from './screens/ChordStore';
-import { ruby } from './colours';
+import { raspberry } from './colours';
 import LibraryChordZoomed from './screens/LibraryChordZoomed';
 import StoreChordZoomed from './screens/StoreChordZoomed';
 import ChordFinder from './screens/ChordFinder';
@@ -20,7 +19,7 @@ const store = createStore(chordReducer, applyMiddleware(thunk));
 
 const screenOptions = {
   headerStyle: {
-    backgroundColor: ruby,
+    backgroundColor: raspberry,
     elevation: 0,
     shadowOpacity: 0,
     borderBottomWidth: 0,
@@ -95,10 +94,10 @@ function TabStack() {
       })}
       tabBarOptions={{
         style: {
-          borderTopColor: ruby,
+          borderTopColor: raspberry,
         },
-        activeBackgroundColor: ruby,
-        inactiveBackgroundColor: ruby,
+        activeBackgroundColor: raspberry,
+        inactiveBackgroundColor: raspberry,
         activeTintColor: 'white',
         inactiveTintColor: 'black',
       }}
@@ -114,28 +113,26 @@ const RootStack = createStackNavigator();
 export default function App() {
   return (
     <Provider store={store}>
-      <ThemeProvider>
-        <NavigationContainer>
-          <RootStack.Navigator mode="modal">
-            <RootStack.Screen name="Tabs" component={TabStack} options={{ headerShown: false }} />
-            <RootStack.Screen
-              name="Modal"
-              component={Modal}
-              headerStyle={{ backgroundColor: 'red' }}
-              options={({ route }) => (
+      <NavigationContainer>
+        <RootStack.Navigator mode="modal">
+          <RootStack.Screen name="Tabs" component={TabStack} options={{ headerShown: false }} />
+          <RootStack.Screen
+            name="Modal"
+            component={Modal}
+            headerStyle={{ backgroundColor: 'red' }}
+            options={({ route }) => (
 
-                {
-                  title: `Choose a ${route.params.mode}`,
-                  headerStyle: {
-                    backgroundColor: ruby,
-                  },
-                  headerTintColor: 'white',
-                }
-              )}
-            />
-          </RootStack.Navigator>
-        </NavigationContainer>
-      </ThemeProvider>
+              {
+                title: `Choose a ${route.params.mode}`,
+                headerStyle: {
+                  backgroundColor: raspberry,
+                },
+                headerTintColor: 'white',
+              }
+            )}
+          />
+        </RootStack.Navigator>
+      </NavigationContainer>
     </Provider>
   );
 }

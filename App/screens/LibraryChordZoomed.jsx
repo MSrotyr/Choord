@@ -5,7 +5,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
-  grad2, grad1, ruby, mintcream,
+  grad2, grad1, raspberry, mintcream,
 } from '../colours';
 import Chord from '../components/Chord';
 import actions from '../actions';
@@ -108,7 +108,7 @@ export default function LibraryChordZoomed({ route, navigation }) {
               <View style={styles.buttons}>
                 <TouchableOpacity
                   onPress={removeFromLibrary}
-                  style={[styles.btnStyle, { backgroundColor: ruby }]}
+                  style={[styles.btnStyle, { backgroundColor: raspberry }]}
                 >
                   <Text style={styles.text}>Delete Chord</Text>
                 </TouchableOpacity>

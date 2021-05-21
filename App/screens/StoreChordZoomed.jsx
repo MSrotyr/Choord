@@ -5,7 +5,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
-  grad1, grad2, mintcream, ruby,
+  grad1, grad2, mintcream, raspberry,
 } from '../colours';
 import Chord from '../components/Chord';
 import actions from '../actions';
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: ruby,
+    backgroundColor: raspberry,
     padding: 10,
     borderRadius: 5,
     height: 40,

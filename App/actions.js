@@ -13,10 +13,12 @@ function uploadLibrary() {
 function updateComment(_id, comment) {
   return async (dispatch, getState) => {
     const chord = await apiService.updateComment(_id, comment);
-    dispatch({
-      type: 'UPDATE_COMMENT',
-      payload: chord,
-    });
+    if (chord) {
+      dispatch({
+        type: 'UPDATE_COMMENT',
+        payload: chord,
+      })
+    };
   };
 }
 
@@ -30,7 +32,7 @@ function removeFromLibrary(_id) {
 function addToLibrary(chordData) {
   return async (dispatch, getState) => {
     const chord = await apiService.addToLibrary(chordData);
-    dispatch({ type: 'ADD_TO_LIBRARY', payload: chord });
+    if (chord) dispatch({ type: 'ADD_TO_LIBRARY', payload: chord });
   };
 }
 

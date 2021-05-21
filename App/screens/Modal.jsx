@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
-  grad1, grad2, ruby,
+  grad1, grad2, raspberry,
 } from '../colours';
 import actions from '../actions';
 
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     borderRadius: 80,
     width: 80,
     height: 80,
-    borderColor: ruby,
+    borderColor: raspberry,
     borderWidth: 2,
   },
   text: {
