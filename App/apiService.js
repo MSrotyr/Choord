@@ -1,10 +1,11 @@
-const baseUrlLibrary = 'http://192.168.0.10:3000/library';
-const baseUrlChordStore = 'http://192.168.0.10:3000/chordstore';
+import { LOCAL_IP_ADDRESS } from "@env";
+
+const baseUrlLibrary = `http://${LOCAL_IP_ADDRESS}:3000/library`;
+const baseUrlChordStore = `http://${LOCAL_IP_ADDRESS}:3000/chordstore`;
 
 function getLibrary() {
   try {
-    return fetch(baseUrlLibrary)
-      .then((data) => data.json());
+    return fetch(baseUrlLibrary).then((data) => data.json());
   } catch (err) {
     console.log(err);
   }
@@ -13,11 +14,10 @@ function getLibrary() {
 function addToLibrary(chordData) {
   try {
     return fetch(baseUrlLibrary, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(chordData),
-    })
-      .then((data) => data.json());
+    }).then((data) => data.json());
   } catch (err) {
     console.log(err);
   }
@@ -26,9 +26,8 @@ function addToLibrary(chordData) {
 function removeFromLibrary(_id) {
   try {
     return fetch(`${baseUrlLibrary}/${_id}`, {
-      method: 'DELETE',
-    })
-      .then((data) => data.json());
+      method: "DELETE",
+    }).then((data) => data.json());
   } catch (err) {
     console.log(err);
   }
@@ -37,29 +36,28 @@ function removeFromLibrary(_id) {
 function updateComment(_id, comment) {
   try {
     return fetch(`${baseUrlLibrary}/${_id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ comment }),
-    })
-      .then((data) => data.json());
+    }).then((data) => data.json());
   } catch (err) {
     console.log(err);
   }
 }
 
 function removeSlashes(suffix) {
-  let res = '';
+  let res = "";
   for (let i = 0; i < suffix.length; i++) {
-    if (suffix[i] === '/') res += 'S';
+    if (suffix[i] === "/") res += "S";
     else res += suffix[i];
   }
   return res;
 }
 
 function removeHashes(suffix) {
-  let res = '';
+  let res = "";
   for (let i = 0; i < suffix.length; i++) {
-    if (suffix[i] === '#') res += 'H';
+    if (suffix[i] === "#") res += "H";
     else res += suffix[i];
   }
   return res;
@@ -67,14 +65,18 @@ function removeHashes(suffix) {
 
 async function getChord(key, suffix) {
   try {
-    return fetch(`${baseUrlChordStore}/${removeHashes(key)}/${removeSlashes(suffix)}`)
-      .then((data) => data.json());
+    return fetch(
+      `${baseUrlChordStore}/${removeHashes(key)}/${removeSlashes(suffix)}`
+    ).then((data) => data.json());
   } catch (err) {
     console.log(err);
   }
 }
 
-
 module.exports = {
-  getLibrary, addToLibrary, removeFromLibrary, updateComment, getChord,
+  getLibrary,
+  addToLibrary,
+  removeFromLibrary,
+  updateComment,
+  getChord,
 };
