@@ -2,7 +2,7 @@
 
 Choord is a mobile (iOS) app that helps beginner guitarists learn and discover new chords. Users can scroll through a list of common beginner friendly chords in the "Chord Store" or search for the chord they wish to learn from a database of over 2000 chords. Once the correct chord is found, the user can add the chord to their library.
 
-<img src="./assets/001.PNG">{:height="50%" width="50%"}<img src="./assets/005.PNG" style="zoom:25%">{:height="50%" width="50%"}
+(./assets/001.PNG){:height="50%" width="50%"}<img src="./assets/005.PNG" style="zoom:25%">{:height="50%" width="50%"}
 
 <img src="./assets/007.PNG" style="zoom:25%">{:height="50%" width="50%"}<img src="./assets/010.PNG" style="zoom:25%">{:height="50%" width="50%"}
 
