@@ -1,19 +1,48 @@
 import { LOCAL_IP_ADDRESS } from "@env";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { v4 as uuidv4 } from "uuid";
 
-const baseUrlLibrary = `http://${LOCAL_IP_ADDRESS}:3000/library`;
-const baseUrlChordStore = `http://${LOCAL_IP_ADDRESS}:3000/chordstore`;
-
-function getLibrary() {
+async function makeId() {
+  console.log("make");
   try {
-    return fetch(baseUrlLibrary).then((data) => data.json());
+    const id = uuidv4();
+    await AsyncStorage.setItem("userId", id);
+    return id;
   } catch (err) {
     console.log(err);
   }
 }
 
-function addToLibrary(chordData) {
+async function readId() {
+  console.log("read");
   try {
-    return fetch(baseUrlLibrary, {
+    const userId = await AsyncStorage.getItem("userId");
+    if (userId === null) {
+      return makeId();
+    }
+    return userId;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+const baseUrlLibrary = `http://${LOCAL_IP_ADDRESS}:3000/library`;
+const baseUrlChordStore = `http://${LOCAL_IP_ADDRESS}:3000/chordstore`;
+
+async function getLibrary() {
+  userId = await readId();
+  console.log(userId);
+  try {
+    return fetch(`${baseUrlLibrary}/${userId}`).then((data) => data.json());
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function addToLibrary(chordData) {
+  userId = await readId();
+  try {
+    return fetch(`${baseUrlLibrary}/${userId}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(chordData),
@@ -23,9 +52,10 @@ function addToLibrary(chordData) {
   }
 }
 
-function removeFromLibrary(_id) {
+async function removeFromLibrary(_id) {
+  userId = await readId();
   try {
-    return fetch(`${baseUrlLibrary}/${_id}`, {
+    return fetch(`${baseUrlLibrary}/${userId}/${_id}`, {
       method: "DELETE",
     }).then((data) => data.json());
   } catch (err) {
@@ -33,9 +63,10 @@ function removeFromLibrary(_id) {
   }
 }
 
-function updateComment(_id, comment) {
+async function updateComment(_id, comment) {
+  userId = await readId();
   try {
-    return fetch(`${baseUrlLibrary}/${_id}`, {
+    return fetch(`${baseUrlLibrary}/${userId}/${_id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ comment }),
