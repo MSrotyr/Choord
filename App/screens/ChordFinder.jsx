@@ -1,33 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import {
-  View, StyleSheet, Text, TouchableOpacity,
-} from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
-import { LinearGradient } from 'expo-linear-gradient';
-import {
-  grad1, grad2, mintcream, raspberry,
-} from '../colours';
-import keys from '../assets/keys';
-import suffixes from '../assets/suffixes';
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
+import Carousel, { Pagination } from "react-native-snap-carousel";
+import { LinearGradient } from "expo-linear-gradient";
+import { grad1, grad2, mintcream, raspberry } from "../colours";
+import keys from "../assets/keys";
+import suffixes from "../assets/suffixes";
+import { CHORD_FINDER_SCALE } from "../constants";
 
-import actions from '../actions';
-import Chord from '../components/Chord';
+import actions from "../actions";
+import Chord from "../components/Chord";
 
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
   },
   btnContainer: {
     marginVertical: 20,
   },
   btn: {
     backgroundColor: raspberry,
-    borderColor: 'black',
+    borderColor: "black",
     borderWidth: 2,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     borderRadius: 5,
     height: 50,
     width: 250,
@@ -36,15 +33,15 @@ const styles = StyleSheet.create({
   btn2: {
     marginVertical: 10,
     marginHorizontal: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: raspberry,
     padding: 10,
     borderRadius: 5,
     height: 40,
   },
   text: {
-    color: 'white',
+    color: "white",
   },
   container: {
     width: 299,
@@ -52,25 +49,28 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: mintcream,
     borderWidth: 2,
-    borderColor: 'black',
-    alignItems: 'center',
+    borderColor: "black",
+    alignItems: "center",
   },
 });
 
 export default function ChordFinder({ navigation }) {
-  const { key } = useSelector(state => state.chordFinder);
-  const { suffix } = useSelector(state => state.chordFinder);
-  const { chordData } = useSelector(state => state.chordFinder);
-  const { chordFound } = useSelector(state => state.chordFinder);
+  const { key } = useSelector((state) => state.chordFinder);
+  const { suffix } = useSelector((state) => state.chordFinder);
+  const { chordData } = useSelector((state) => state.chordFinder);
+  const { chordFound } = useSelector((state) => state.chordFinder);
   const dispatch = useDispatch();
-  const library = useSelector(state => state.library);
+  const library = useSelector((state) => state.library);
   const [index, setIndex] = useState(0);
   const [isMount, setIsMount] = useState(true);
-  const scale = 1.2;
+
+  const scale = CHORD_FINDER_SCALE;
 
   function addToLibrary(chordVariant) {
-    const oldChord = library.find(chord => (
-      chord.key === chordVariant.key && chord.suffix === chordVariant.suffix));
+    const oldChord = library.find(
+      (chord) =>
+        chord.key === chordVariant.key && chord.suffix === chordVariant.suffix
+    );
     if (!oldChord) {
       dispatch(actions.addToLibrary(chordVariant));
     }
@@ -94,14 +94,14 @@ export default function ChordFinder({ navigation }) {
 
   function noChordFound() {
     if (chordFound === false) {
-      return (
-        <Text>No chord found</Text>
-      );
-    } return null;
+      return <Text>No chord found</Text>;
+    }
+    return null;
   }
 
   let data = [];
-  if (chordData && chordData.length) data = chordData.map(chordVariant => genChord(chordVariant));
+  if (chordData && chordData.length)
+    data = chordData.map((chordVariant) => genChord(chordVariant));
   const isCarousel = React.useRef(null);
 
   useEffect(() => {
@@ -128,17 +128,21 @@ export default function ChordFinder({ navigation }) {
       <View style={styles.screen}>
         <View style={styles.btnContainer}>
           <TouchableOpacity
-            onPress={() => navigation.navigate('Modal', { data: keys, mode: 'key' })}
+            onPress={() =>
+              navigation.navigate("Modal", { data: keys, mode: "key" })
+            }
           >
             <View style={styles.btn}>
-              <Text style={styles.text}>{key || 'Choose a key'}</Text>
+              <Text style={styles.text}>{key || "Choose a key"}</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => navigation.navigate('Modal', { data: suffixes, mode: 'suffix' })}
+            onPress={() =>
+              navigation.navigate("Modal", { data: suffixes, mode: "suffix" })
+            }
           >
             <View style={styles.btn}>
-              <Text style={styles.text}>{suffix || 'Choose a suffix'}</Text>
+              <Text style={styles.text}>{suffix || "Choose a suffix"}</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -146,7 +150,9 @@ export default function ChordFinder({ navigation }) {
         <Carousel
           layout="tinder"
           useScrollView
-          onSnapToItem={(newIndex) => { setIndex(newIndex); }}
+          onSnapToItem={(newIndex) => {
+            setIndex(newIndex);
+          }}
           layoutCardOffset={9}
           inactiveSlideShift={0}
           ref={isCarousel}
@@ -164,7 +170,7 @@ export default function ChordFinder({ navigation }) {
             height: 10,
             borderRadius: 5,
             marginHorizontal: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.92)',
+            backgroundColor: "rgba(0, 0, 0, 0.92)",
           }}
           inactiveDotOpacity={0.4}
           inactiveDotScale={0.6}
@@ -172,6 +178,5 @@ export default function ChordFinder({ navigation }) {
         />
       </View>
     </LinearGradient>
-
   );
 }

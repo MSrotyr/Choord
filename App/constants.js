@@ -1,0 +1,11 @@
+import { Dimensions } from "react-native";
+
+const WINDOW_WIDTH = Dimensions.get("window").width;
+const STANDARD_WIDTH = 375;
+const SCALE_CORRECTION_NUMBER = WINDOW_WIDTH / STANDARD_WIDTH;
+
+module.exports = {
+  CHORD_LIST_SCALE: 0.83 * SCALE_CORRECTION_NUMBER,
+  CHORD_FINDER_SCALE: 1.2 * SCALE_CORRECTION_NUMBER,
+  CHORD_ZOOMED_SCALE: 1.6 * SCALE_CORRECTION_NUMBER,
+};

@@ -1,20 +1,17 @@
-import React from 'react';
-import {
-  View, Text, StyleSheet, TouchableOpacity,
-} from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { LinearGradient } from 'expo-linear-gradient';
-import {
-  grad1, grad2, mintcream, raspberry,
-} from '../colours';
-import Chord from '../components/Chord';
-import actions from '../actions';
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { LinearGradient } from "expo-linear-gradient";
+import { grad1, grad2, mintcream, raspberry } from "../colours";
+import Chord from "../components/Chord";
+import actions from "../actions";
+import { CHORD_ZOOMED_SCALE } from "../constants";
 
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   container: {
     width: 299,
@@ -22,34 +19,36 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: mintcream,
     borderWidth: 2,
-    borderColor: 'black',
-    alignItems: 'center',
+    borderColor: "black",
+    alignItems: "center",
   },
   btnStyle: {
     marginVertical: 15,
     marginHorizontal: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: raspberry,
     padding: 10,
     borderRadius: 5,
     height: 40,
   },
   text: {
-    color: 'white',
+    color: "white",
   },
 });
 
-const scale = 1.6;
+const scale = CHORD_ZOOMED_SCALE;
 
 export default function LibraryChordZoomed({ route, navigation }) {
-  const library = useSelector(state => state.library);
+  const library = useSelector((state) => state.library);
   const dispatch = useDispatch();
   const { chordData } = route.params;
 
   function addToLibrary() {
-    const oldChord = library.find(chord => (
-      chord.key === chordData.key && chord.suffix === chordData.suffix));
+    const oldChord = library.find(
+      (chord) =>
+        chord.key === chordData.key && chord.suffix === chordData.suffix
+    );
     if (!oldChord) {
       dispatch(actions.addToLibrary(chordData));
     }
@@ -68,16 +67,12 @@ export default function LibraryChordZoomed({ route, navigation }) {
         <View style={styles.container}>
           <Chord chordData={chordData} scale={scale} />
           <View style={styles.buttons}>
-            <TouchableOpacity
-              style={styles.btnStyle}
-              onPress={addToLibrary}
-            >
+            <TouchableOpacity style={styles.btnStyle} onPress={addToLibrary}>
               <Text style={styles.text}>Add to library</Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
     </LinearGradient>
-
   );
 }
