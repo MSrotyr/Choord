@@ -2,7 +2,11 @@ const mongoose = require("../models/index");
 const chordSchema = require("./chordSchema");
 
 const userSchema = new mongoose.Schema({
-  library: [chordSchema],
+  _id: String,
+  library: {
+    type: [chordSchema],
+    default: [],
+  },
 });
 
 module.exports = userSchema;

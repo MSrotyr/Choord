@@ -1,11 +1,8 @@
 const ChordStore = require("../models/chordStore");
-const Library = require("../models/library");
 
 async function getLibrary(req, res) {
-  console.log(req.params.userId);
   try {
-    const chords = await Library.find();
-    res.status(201).send(chords);
+    res.status(201).send(req.user.library);
   } catch (err) {
     console.log(err);
     res.status(500).send(err);
@@ -14,7 +11,10 @@ async function getLibrary(req, res) {
 
 async function addToLibrary(req, res) {
   try {
-    const chord = await Library.create(req.body);
+    const user = req.user;
+    user.library.push(req.body);
+    const chord = user.library[user.library.length - 1];
+    await user.save();
     res.status(201).send(chord);
   } catch (err) {
     console.log(err);
@@ -24,7 +24,9 @@ async function addToLibrary(req, res) {
 
 async function removeFromLibrary(req, res) {
   try {
-    const chord = await Library.findOneAndDelete({ _id: req.params._id });
+    const user = req.user;
+    const chord = user.library.id(req.params._id).remove();
+    await user.save();
     res.status(200).send(chord);
   } catch (err) {
     console.log(err);
@@ -34,11 +36,11 @@ async function removeFromLibrary(req, res) {
 
 async function updateComment(req, res) {
   try {
-    const chord = await Library.findOneAndUpdate(
-      { _id: req.params._id },
-      { comment: req.body.comment },
-      { new: true }
-    );
+    const user = req.user;
+    const chord = user.library.id(req.params._id);
+    chord.comment = req.body.comment;
+    user.save();
+    console.log(req.body.comment);
     res.status(200).send(chord);
   } catch (err) {
     console.log(err);
