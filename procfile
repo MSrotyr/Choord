@@ -1,1 +1,2 @@
-web: cd Server; node index.js
+moveToServer: cd Server
+web: node index.js
