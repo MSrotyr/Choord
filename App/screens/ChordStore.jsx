@@ -1,14 +1,14 @@
-import { LinearGradient } from 'expo-linear-gradient';
-import React from 'react';
-import beginnerChords from '../assets/beginnerChords.json';
-import { grad1, grad2 } from '../colours';
-import ChordList from '../components/ChordList';
+import { LinearGradient } from "expo-linear-gradient";
+import React from "react";
+import beginnerChords from "../assets/beginnerChords.json";
+import { grad1, grad2 } from "../colours";
+import ChordList from "../components/ChordList";
 
 const data = beginnerChords.chords;
 
 export default function ChordStore({ navigation }) {
-  function goToChord(chordData) {
-    navigation.navigate('StoreChordZoomed', { chordData });
+  function goToChord(chordData, title) {
+    navigation.navigate("StoreChordZoomed", { chordData, title });
   }
   return (
     <LinearGradient

@@ -7,13 +7,13 @@ import FretNumber from "./FretNumber";
 import Barre from "./Barre";
 import { mintcream } from "../colours";
 
-const padding = 8;
+const padding = 9;
 const paddingLeft = 24;
+const margin = 8.2;
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: mintcream,
-    margin: 6.5,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 5,
@@ -129,11 +129,7 @@ function verticalLines(scale) {
   return components;
 }
 
-function genChord(chordData, scale, goToChord) {
-  let title;
-  if (chordData.suffix === "major" || chordData.suffix === "minor") {
-    title = `${chordData.key} ${chordData.suffix}`;
-  } else title = chordData.key + chordData.suffix;
+function genChord(chordData, scale, title) {
   return (
     <View>
       <Text style={{ fontSize: 16 * scale, marginBottom: 14 * scale }}>
@@ -151,23 +147,28 @@ function genChord(chordData, scale, goToChord) {
 }
 
 export default function Chord({ chordData, scale, goToChord, isButton }) {
+  let title;
+  if (chordData.suffix === "major" || chordData.suffix === "minor") {
+    title = `${chordData.key} ${chordData.suffix}`;
+  } else title = chordData.key + chordData.suffix;
   if (isButton) {
     return (
       <TouchableOpacity
         onPress={() => {
           if (goToChord) {
-            goToChord(chordData);
+            goToChord(chordData, title);
           }
         }}
         style={[
           styles.container,
           {
+            margin: margin * scale,
             padding: padding * scale,
             paddingLeft: paddingLeft * scale,
           },
         ]}
       >
-        {genChord(chordData, scale, goToChord)}
+        {genChord(chordData, scale, title)}
       </TouchableOpacity>
     );
   }
@@ -176,10 +177,14 @@ export default function Chord({ chordData, scale, goToChord, isButton }) {
     <View
       style={[
         styles.container,
-        { padding: padding * scale, paddingLeft: paddingLeft * scale },
+        {
+          margin: margin * scale,
+          padding: padding * scale,
+          paddingLeft: paddingLeft * scale,
+        },
       ]}
     >
-      {genChord(chordData, scale, goToChord)}
+      {genChord(chordData, scale, title)}
     </View>
   );
 }

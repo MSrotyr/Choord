@@ -40,7 +40,6 @@ async function updateComment(req, res) {
     const chord = user.library.id(req.params._id);
     chord.comment = req.body.comment;
     user.save();
-    console.log(req.body.comment);
     res.status(200).send(chord);
   } catch (err) {
     console.log(err);

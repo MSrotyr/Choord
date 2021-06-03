@@ -4,13 +4,9 @@ import { CHORD_LIST_SCALE } from "../constants";
 import Chord from "./Chord";
 
 const scale = CHORD_LIST_SCALE;
-
 const styles = StyleSheet.create({
   list: {
     marginTop: 10,
-  },
-  container: {
-    alignItems: "center",
   },
 });
 

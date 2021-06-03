@@ -38,7 +38,7 @@ function LibraryStackScreen() {
         name="LibraryChordZoomed"
         component={LibraryChordZoomed}
         options={({ route }) => ({
-          title: `${route.params.chordData.key} ${route.params.chordData.suffix}`,
+          title: route.params.title,
         })}
       />
     </LibraryStack.Navigator>
@@ -54,7 +54,7 @@ function AddChordsStackScreen() {
         name="StoreChordZoomed"
         component={StoreChordZoomed}
         options={({ route }) => ({
-          title: `${route.params.chordData.key} ${route.params.chordData.suffix}`,
+          title: route.params.title,
         })}
       />
     </AddChordsStack.Navigator>

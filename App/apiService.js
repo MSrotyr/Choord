@@ -1,9 +1,9 @@
 import { LOCAL_IP_ADDRESS } from "@env";
+import { PORT } from "@env";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { v4 as uuidv4 } from "uuid";
 
 async function makeId() {
-  console.log("make");
   try {
     const id = uuidv4();
     await AsyncStorage.setItem("userId", id);
@@ -14,7 +14,6 @@ async function makeId() {
 }
 
 async function readId() {
-  console.log("read");
   try {
     const userId = await AsyncStorage.getItem("userId");
     if (userId === null) {
@@ -26,12 +25,12 @@ async function readId() {
   }
 }
 
-const baseUrlLibrary = `http://${LOCAL_IP_ADDRESS}:3000/library`;
-const baseUrlChordStore = `http://${LOCAL_IP_ADDRESS}:3000/chordstore`;
+const baseUrlLibrary = `http://${LOCAL_IP_ADDRESS}:${PORT}/library`;
+const baseUrlChordStore = `http://${LOCAL_IP_ADDRESS}:${PORT}/chordstore`;
 
 async function getLibrary() {
+  console.log(PORT);
   userId = await readId();
-  console.log(userId);
   try {
     return fetch(`${baseUrlLibrary}/${userId}`).then((data) => data.json());
   } catch (err) {

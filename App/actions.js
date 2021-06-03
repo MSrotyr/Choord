@@ -1,10 +1,10 @@
-import apiService from './apiService';
+import apiService from "./apiService";
 
 function uploadLibrary() {
   return async (dispatch) => {
     const library = await apiService.getLibrary();
     dispatch({
-      type: 'UPLOAD_LIBRARY',
+      type: "UPLOAD_LIBRARY",
       payload: library,
     });
   };
@@ -15,30 +15,30 @@ function updateComment(_id, comment) {
     const chord = await apiService.updateComment(_id, comment);
     if (chord) {
       dispatch({
-        type: 'UPDATE_COMMENT',
+        type: "UPDATE_COMMENT",
         payload: chord,
-      })
-    };
+      });
+    }
   };
 }
 
 function removeFromLibrary(_id) {
   return async (dispatch, getState) => {
     apiService.removeFromLibrary(_id);
-    dispatch({ type: 'REMOVE_FROM_LIBRARY', payload: { _id } });
+    dispatch({ type: "REMOVE_FROM_LIBRARY", payload: { _id } });
   };
 }
 
 function addToLibrary(chordData) {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     const chord = await apiService.addToLibrary(chordData);
-    if (chord) dispatch({ type: 'ADD_TO_LIBRARY', payload: chord });
+    if (chord) dispatch({ type: "ADD_TO_LIBRARY", payload: chord });
   };
 }
 
 function updateKeyOrSuffix(keyOrSuffix) {
   return {
-    type: 'UPDATE_KEY_OR_SUFFIX',
+    type: "UPDATE_KEY_OR_SUFFIX",
     payload: keyOrSuffix,
   };
 }
@@ -46,11 +46,16 @@ function updateKeyOrSuffix(keyOrSuffix) {
 function getChord(key, suffix) {
   return async (dispatch) => {
     const chord = await apiService.getChord(key, suffix);
-    if (chord.length) dispatch({ type: 'FOUND_CHORD', payload: chord });
-    else dispatch({ type: 'NO_CHORD_FOUND' });
+    if (chord.length) dispatch({ type: "FOUND_CHORD", payload: chord });
+    else dispatch({ type: "NO_CHORD_FOUND" });
   };
 }
 
 module.exports = {
-  updateComment, uploadLibrary, removeFromLibrary, addToLibrary, updateKeyOrSuffix, getChord,
+  updateComment,
+  uploadLibrary,
+  removeFromLibrary,
+  addToLibrary,
+  updateKeyOrSuffix,
+  getChord,
 };

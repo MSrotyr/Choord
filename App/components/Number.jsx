@@ -5,7 +5,7 @@ import { celadon, honey, prussian, raspberry } from "../colours";
 const startX = -7;
 const startY = 12;
 
-const xSep = 19.8;
+const xSep = 19.9;
 const ySep = 30;
 
 const styles = StyleSheet.create({

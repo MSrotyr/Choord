@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { LinearGradient } from 'expo-linear-gradient';
-import ChordList from '../components/ChordList';
-import actions from '../actions';
-import { grad1, grad2 } from '../colours';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { LinearGradient } from "expo-linear-gradient";
+import ChordList from "../components/ChordList";
+import actions from "../actions";
+import { grad1, grad2 } from "../colours";
 
 export default function Library({ navigation }) {
   const dispatch = useDispatch();
-  const library = useSelector(state => state.library);
+  const library = useSelector((state) => state.library);
 
   useEffect(() => {
     dispatch(actions.uploadLibrary());
   }, []);
 
-  function goToChord(chordData) {
-    navigation.navigate('LibraryChordZoomed', { chordData });
+  function goToChord(chordData, title) {
+    navigation.navigate("LibraryChordZoomed", { chordData, title });
   }
 
   return (
