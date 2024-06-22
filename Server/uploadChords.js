@@ -3,7 +3,12 @@ const rawData = require('./rawData.json');
 
 const chords = rawData.chords;
 
-function upload() {
+async function uploadChords() {
+
+if (await ChordStore.exists()) {
+    return;
+  }
+
   let i = 0
   for (let musicalKey of Object.keys(chords)) {
     for (let nestChord of chords[musicalKey]) {
@@ -20,5 +25,4 @@ function upload() {
   }
 }
 
-upload();
-console.log('Done');
+module.exports = uploadChords;
