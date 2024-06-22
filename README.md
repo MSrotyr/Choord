@@ -21,14 +21,7 @@ cd Choord
 
 2. Create a .env file in the App directory and insert the correct environment variables, listed in .env.example, for your machine. To find your LOCAL_IP_ADDRESS type 'ipconfig' into your terminal, use the value labelled 'IPv4 Address'. MONGO_URL defaults to 'mongodb://localhost:27017/choord' if omitted.
 
-3. Add chords from json file to database
-
-```bash
-cd server
-node uploadChord.js
-```
-
-4. Install backend server dependencies and run
+3. Install backend server dependencies and run
 
 ```bash
 cd server
@@ -36,9 +29,9 @@ npm install
 npx nodemon
 ```
 
-5. Run an emulator on android studio. See [https://docs.expo.dev/workflow/android-studio-emulator] on how to setup android studio for an expo project.
+4. Run an emulator on android studio. See [https://docs.expo.dev/workflow/android-studio-emulator] on how to setup android studio for an expo project.
 
-6. In a new terminal: Install app dependencies and run
+5. In a new terminal: Install app dependencies and run
 
 ```bash
 cd App
@@ -47,8 +40,6 @@ npm start
 ```
 
 If prompted select the "open android" option on the metro server.
-
-7. 
 
 # Built with
 
