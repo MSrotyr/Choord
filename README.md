@@ -23,7 +23,7 @@ git clone https://github.com/MSrotyr/Choord
 cd Choord
 ```
 
-2. Create a .env file in the App directory and insert the correct environment variables, listed in .env.example, for your machine. To find your LOCAL_IP_ADDRESS type 'ipconfig' into your terminal, use the value labelled 'IPv4 Address'. PORT defaults to 3000 and MONGO_URL defaults to 'mongodb://localhost:27017/choord' if left blank.
+2. Create a .env file in the App directory and insert the correct environment variables, listed in .env.example, for your machine. To find your LOCAL_IP_ADDRESS type 'ipconfig' into your terminal, use the value labelled 'IPv4 Address'. MONGO_URL defaults to 'mongodb://localhost:27017/choord' if omitted.
 
 3. Add chords from json file to database
 
