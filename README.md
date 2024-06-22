@@ -8,7 +8,7 @@ Choord is a mobile (android) app that helps beginner guitarists learn and discov
 
 ## Getting Started
 
-Before you continue with the installation make sure you have: git Node and npm installed on your machine. You will also need to have android studio installed on your device to run the app on an emulator or physical device.
+Before you continue with the installation make sure you have: git Node and npm installed on your machine. You will also need to have android studio installed on your device to run the app on an emulator or physical device. Finally, the back-end server fetches data from a Mongo DB database, you will need to have Mongo DB installed on your local device if running everything locally.
 
 ## Installation
 
