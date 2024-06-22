@@ -5,37 +5,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d9cc642-7c1b-4aa9-92ed-5d3383b58512" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/.expo/packager-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/App/.expo/packager-info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/App/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/App/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/apiService.js" beforeDir="false" afterPath="$PROJECT_DIR$/App/apiService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/components/Chord.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/App/components/Chord.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/components/ChordList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/App/components/ChordList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/components/Number.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/App/components/Number.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/App/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/screens/ChordStore.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/App/screens/ChordStore.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/screens/Library.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/App/screens/Library.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/controllers/chordController.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/controllers/chordController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/.expo/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/App/.expo/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/App/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/App/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/models/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/models/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
   <component name="ProjectId" id="1tONYTEk1pCZ9DNM5VP2YKXYIn5" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Matt/source/repos/Choord",
+    "settings.editor.selected.configurable": "AndroidSdkUpdater"
+  }
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -46,12 +56,5 @@
       <updated>1622636222708</updated>
     </task>
     <servers />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="-1811" y="216" width="1611" height="743" key="AVDManager" timestamp="1622734418157">
-      <screen x="-1920" y="-147" width="1920" height="1080" />
-    </state>
-    <state x="-1811" y="216" width="1611" height="743" key="AVDManager/0.0.1366.768/-1920.-147.1920.1080@-1920.-147.1920.1080" timestamp="1622734418157" />
-    <state x="122" y="124" width="1146" height="528" key="AVDManager/0.0.1366.768/-1920.-147.1920.1080@0.0.1366.768" timestamp="1622725257547" />
   </component>
 </project>
