@@ -29,7 +29,6 @@ const baseUrlLibrary = `http://${LOCAL_IP_ADDRESS}:${PORT}/library`;
 const baseUrlChordStore = `http://${LOCAL_IP_ADDRESS}:${PORT}/chordstore`;
 
 async function getLibrary() {
-  console.log(PORT);
   userId = await readId();
   try {
     return fetch(`${baseUrlLibrary}/${userId}`).then((data) => data.json());
