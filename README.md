@@ -1,6 +1,6 @@
 # Choord
 
-Choord is a mobile (iOS) app that helps beginner guitarists learn and discover new chords. Users can scroll through a list of common beginner friendly chords in the "Chord Store" or search for the chord they wish to learn from a database of over 2000 chords. Once the correct chord is found, the user can add the chord to their library.
+Choord is a mobile (android) app that helps beginner guitarists learn and discover new chords. Users can scroll through a list of common beginner friendly chords in the "Chord Store" or search for the chord they wish to learn from a database of over 2000 chords. Once the correct chord is found, the user can add the chord to their library.
 
 <kbd><img src="./assets/001.PNG" style="zoom:50%" width="375" height="667"></kbd><kbd><img src="./assets/005.PNG" style="zoom:50%" width="375" height="667"></kbd>
 
@@ -8,11 +8,7 @@ Choord is a mobile (iOS) app that helps beginner guitarists learn and discover n
 
 ## Getting Started
 
-Before you continue with the installation make sure you have: git Node and npm installed on your machine. Furthermore, install the Expo development environment with
-
-```bash
-npm install -g expo-cli
-```
+Before you continue with the installation make sure you have: git Node and npm installed on your machine. You will also need to have android studio installed on your device to run the app on an emulator or physical device.
 
 ## Installation
 
@@ -40,7 +36,9 @@ npm install
 npx nodemon
 ```
 
-5. In a new terminal: Install app dependencies and run
+5. Run an emulator on android studio. See [https://docs.expo.dev/workflow/android-studio-emulator] on how to setup android studio for an expo project.
+
+6. In a new terminal: Install app dependencies and run
 
 ```bash
 cd App
@@ -48,7 +46,9 @@ npm install
 npm start
 ```
 
-6. Scan the barcode with the Expo app on your phone or follow the terminal instructions to load up the emulator on your machine.
+If prompted select the "open android" option on the metro server.
+
+7. 
 
 # Built with
 
